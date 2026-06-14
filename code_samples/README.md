@@ -20,16 +20,16 @@ where to confirm against current docs.
 
 | File | Theme | Doc section |
 |---|---|---|
-| [`01-minimal-agent-loop.ts`](typescript/01-minimal-agent-loop.ts) | The agentic loop, from scratch (raw Messages API) | §1 |
-| [`02-tool-result-contract.ts`](typescript/02-tool-result-contract.ts) | Tool design: poka-yoke, `isError`, bounded output, `response_format` | §2 |
-| [`03-agent-sdk-quickstart.ts`](typescript/03-agent-sdk-quickstart.ts) | `query()`, options, `maxTurns`/`maxBudgetUsd`, result subtypes | §1, §12 |
-| [`04-custom-tools-mcp.ts`](typescript/04-custom-tools-mcp.ts) | In-process MCP server, `tool()`, tool naming, `readOnlyHint` | §2, §12 |
-| [`05-subagents-orchestration.ts`](typescript/05-subagents-orchestration.ts) | Subagents, context isolation, when (not) to go multi-agent | §5 |
-| [`06-permissions-and-hooks.ts`](typescript/06-permissions-and-hooks.ts) | Permission pipeline, `canUseTool`, hooks, deny rules | §6, §7 |
-| [`07-context-and-memory.ts`](typescript/07-context-and-memory.ts) | Context budget, compaction, context editing, hardened memory tool | §3 |
-| [`08-streaming.ts`](typescript/08-streaming.ts) | Correct streamed-message reassembly (by index, partial JSON) | §8 |
-| [`09-observability.ts`](typescript/09-observability.ts) | OTEL env config + app-level structured tracing | §9 |
-| [`10-eval-harness.ts`](typescript/10-eval-harness.ts) | Isolated trials, outcome grading, `pass^k` | §10 |
+| [`01-minimal-agent-loop.ts`](typescript/01-minimal-agent-loop.ts) | The agentic loop, from scratch (raw Messages API) | [§1](../docs/agent-harness-best-practices.md#s1) |
+| [`02-tool-result-contract.ts`](typescript/02-tool-result-contract.ts) | Tool design: poka-yoke, `isError`, bounded output, `response_format` | [§2](../docs/agent-harness-best-practices.md#s2) |
+| [`03-agent-sdk-quickstart.ts`](typescript/03-agent-sdk-quickstart.ts) | `query()`, options, `maxTurns`/`maxBudgetUsd`, result subtypes | [§1](../docs/agent-harness-best-practices.md#s1), [§12](../docs/agent-harness-best-practices.md#s12) |
+| [`04-custom-tools-mcp.ts`](typescript/04-custom-tools-mcp.ts) | In-process MCP server, `tool()`, tool naming, `readOnlyHint` | [§2](../docs/agent-harness-best-practices.md#s2), [§12](../docs/agent-harness-best-practices.md#s12) |
+| [`05-subagents-orchestration.ts`](typescript/05-subagents-orchestration.ts) | Subagents, context isolation, when (not) to go multi-agent | [§5](../docs/agent-harness-best-practices.md#s5) |
+| [`06-permissions-and-hooks.ts`](typescript/06-permissions-and-hooks.ts) | Permission pipeline, `canUseTool`, hooks, deny rules | [§6](../docs/agent-harness-best-practices.md#s6), [§7](../docs/agent-harness-best-practices.md#s7) |
+| [`07-context-and-memory.ts`](typescript/07-context-and-memory.ts) | Context budget, compaction, context editing, hardened memory tool | [§3](../docs/agent-harness-best-practices.md#s3) |
+| [`08-streaming.ts`](typescript/08-streaming.ts) | Correct streamed-message reassembly (by index, partial JSON) | [§8](../docs/agent-harness-best-practices.md#s8) |
+| [`09-observability.ts`](typescript/09-observability.ts) | OTEL env config + app-level structured tracing | [§9](../docs/agent-harness-best-practices.md#s9) |
+| [`10-eval-harness.ts`](typescript/10-eval-harness.ts) | Isolated trials, outcome grading, `pass^k` | [§10](../docs/agent-harness-best-practices.md#s10) |
 
 ```bash
 cd typescript
@@ -45,9 +45,9 @@ tool-schema and `structuredContent` caveats called out in the files).
 
 | File | Theme | Doc section |
 |---|---|---|
-| [`01_minimal_agent_loop.py`](python/01_minimal_agent_loop.py) | The agentic loop, from scratch | §1 |
-| [`02_tool_contract.py`](python/02_tool_contract.py) | `@tool` decorator, dict vs JSON-Schema, `is_error` | §2 |
-| [`03_agent_sdk_quickstart.py`](python/03_agent_sdk_quickstart.py) | `query()` + `ClaudeAgentOptions`, result subtypes | §1, §12 |
+| [`01_minimal_agent_loop.py`](python/01_minimal_agent_loop.py) | The agentic loop, from scratch | [§1](../docs/agent-harness-best-practices.md#s1) |
+| [`02_tool_contract.py`](python/02_tool_contract.py) | `@tool` decorator, dict vs JSON-Schema, `is_error` | [§2](../docs/agent-harness-best-practices.md#s2) |
+| [`03_agent_sdk_quickstart.py`](python/03_agent_sdk_quickstart.py) | `query()` + `ClaudeAgentOptions`, result subtypes | [§1](../docs/agent-harness-best-practices.md#s1), [§12](../docs/agent-harness-best-practices.md#s12) |
 
 ```bash
 cd python

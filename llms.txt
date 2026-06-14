@@ -12,6 +12,7 @@ source.
 
 ## Core documentation
 
+- [Navigation manifest](index.json): machine-readable map that pre-joins every guide section (stable ids `#s0`–`#s12`) to its code samples and primary sources. Resolve "which sample/sources back section N?" in one lookup instead of parsing the markdown indexes. Start here if you're navigating programmatically.
 - [Master guide](docs/agent-harness-best-practices.md): 12 themed sections (agentic loop, tool design, context/memory, system prompts, subagents, permissions/safety, hooks, resilience/streaming, observability, evals, file structure, Claude Agent SDK), plus a decision cheat-sheet and anti-patterns. Every claim is cited.
 - [README](README.md): repository overview, structure, and how the research was produced.
 - [Code samples index](code_samples/README.md): maps each runnable sample to a guide section.

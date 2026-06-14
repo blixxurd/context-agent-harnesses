@@ -12,6 +12,10 @@ context to read from, and as a place to extend with more verified guidance.
 
 ## Where things live
 
+- `index.json` — machine-readable navigation manifest. Pre-joins each guide section
+  (stable ids `#s0`–`#s12`) to its code samples and primary sources. Use it to navigate
+  programmatically instead of parsing the markdown index tables. Keep it in sync when you
+  add/move a section, sample, or source.
 - `docs/agent-harness-best-practices.md` — the master guide. Start here.
 - `code_samples/typescript/` — 10 type-checked TS samples (primary).
 - `code_samples/python/` — 3 illustrative Python samples.

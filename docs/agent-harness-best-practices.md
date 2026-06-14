@@ -14,23 +14,27 @@ machine-readable digest — lives in [`../raw_outputs/`](../raw_outputs/) (start
 
 ## Contents
 
-- [0. What a harness is, and why it's the lever](#0-what-a-harness-is-and-why-its-the-lever)
-- [1. The agentic loop](#1-the-agentic-loop)
-- [2. Tool design & the tool-result contract](#2-tool-design--the-tool-result-contract)
-- [3. Context window & memory management](#3-context-window--memory-management)
-- [4. System prompts & instructions](#4-system-prompts--instructions)
-- [5. Subagents & multi-agent orchestration](#5-subagents--multi-agent-orchestration)
-- [6. Permissions, sandboxing & safety guardrails](#6-permissions-sandboxing--safety-guardrails)
-- [7. Human-in-the-loop & lifecycle hooks](#7-human-in-the-loop--lifecycle-hooks)
-- [8. Error handling, resilience & streaming](#8-error-handling-resilience--streaming)
-- [9. Observability, tracing & logging](#9-observability-tracing--logging)
-- [10. Evaluation & testing](#10-evaluation--testing)
-- [11. Project & file structure for long-running agents](#11-project--file-structure-for-long-running-agents)
-- [12. Claude Agent SDK specifics](#12-claude-agent-sdk-specifics)
+- [0. What a harness is, and why it's the lever](#s0)
+- [1. The agentic loop](#s1)
+- [2. Tool design & the tool-result contract](#s2)
+- [3. Context window & memory management](#s3)
+- [4. System prompts & instructions](#s4)
+- [5. Subagents & multi-agent orchestration](#s5)
+- [6. Permissions, sandboxing & safety guardrails](#s6)
+- [7. Human-in-the-loop & lifecycle hooks](#s7)
+- [8. Error handling, resilience & streaming](#s8)
+- [9. Observability, tracing & logging](#s9)
+- [10. Evaluation & testing](#s10)
+- [11. Project & file structure for long-running agents](#s11)
+- [12. Claude Agent SDK specifics](#s12)
 - [Quick decision cheat-sheet](#quick-decision-cheat-sheet) · [Top anti-patterns](#top-anti-patterns) · [Sources](#sources)
+
+> Stable anchors: each numbered section has a short id (`#s0`…`#s12`) that survives
+> title edits. Code samples and [`../index.json`](../index.json) link to these.
 
 ---
 
+<a id="s0"></a>
 ## 0. What a harness is, and why it's the lever
 
 An agentic system has **four components**: the **model**, the **tools**, the
@@ -59,6 +63,7 @@ Two distinctions to get straight before anything else
 
 ---
 
+<a id="s1"></a>
 ## 1. The agentic loop
 
 **Principle.** An agent is a thin control layer around a repeating cycle:
@@ -89,6 +94,7 @@ response with *no* tool calls. ([agent-loop][loop], [be][be])
 
 ---
 
+<a id="s2"></a>
 ## 2. Tool design & the tool-result contract
 
 **Principle.** The **agent-computer interface (ACI)** — your tools — matters *more than
@@ -127,6 +133,7 @@ one tool-description-rewriting pass cut task-completion time **~40%**. ([writing
 
 ---
 
+<a id="s3"></a>
 ## 3. Context window & memory management
 
 **Principle.** Context is a **finite, degrading budget.** Attention cost scales ~n² and
@@ -158,6 +165,7 @@ The harness's job is to keep the smallest high-signal token set in front of the 
 
 ---
 
+<a id="s4"></a>
 ## 4. System prompts & instructions
 
 **Principle.** Aim for the **right altitude** — specific enough to be useful, general
@@ -181,6 +189,7 @@ enough not to be brittle. Avoid both hard-coded if/else logic *and* vague hand-w
 
 ---
 
+<a id="s5"></a>
 ## 5. Subagents & multi-agent orchestration
 
 **Principle.** **Single-threaded, linear agents are the most reliable production
@@ -211,6 +220,7 @@ tokens and consistency. Don't reach for it reflexively. ([dont-multi][dm], [ma][
 
 ---
 
+<a id="s6"></a>
 ## 6. Permissions, sandboxing & safety guardrails
 
 **Principle.** **Encode authorization in harness *code*, not in the prompt.** A prompt is
@@ -258,6 +268,7 @@ a request; a permission rule is a guarantee. Layer defenses — no single check 
 
 ---
 
+<a id="s7"></a>
 ## 7. Human-in-the-loop & lifecycle hooks
 
 **Principle.** Hooks are deterministic code that runs at fixed points in the loop —
@@ -279,6 +290,7 @@ a request; a permission rule is a guarantee. Layer defenses — no single check 
 
 ---
 
+<a id="s8"></a>
 ## 8. Error handling, resilience & streaming
 
 **Principle.** Agents are long-running and talk to flaky networks. Build for retries,
@@ -307,6 +319,7 @@ timeouts, and partial failures — and reassemble streamed output correctly.
 
 ---
 
+<a id="s9"></a>
 ## 9. Observability, tracing & logging
 
 **Principle.** You can't improve an agent you can't see. Non-deterministic, long-running
@@ -329,6 +342,7 @@ systems demand structured telemetry. ([observability][obs])
 
 ---
 
+<a id="s10"></a>
 ## 10. Evaluation & testing
 
 **Principle.** **Grade outcomes, not paths.** Start small with real failures, isolate
@@ -354,6 +368,7 @@ trials, and measure *consistency*, not just peak capability. ([demystifying][ev]
 
 ---
 
+<a id="s11"></a>
 ## 11. Project & file structure for long-running agents
 
 **Principle.** For long-running or resumable agents, externalize state and requirements
@@ -395,6 +410,7 @@ my-agent/
 
 ---
 
+<a id="s12"></a>
 ## 12. Claude Agent SDK specifics
 
 - **Install:** `@anthropic-ai/claude-agent-sdk` (TS) / `claude-agent-sdk` (Python).

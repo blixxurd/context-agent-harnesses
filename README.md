@@ -31,6 +31,7 @@ Cognition, OpenAI, and LangChain.
 .
 ├── README.md                         # you are here
 ├── llms.txt                          # LLM-friendly index (llmstxt.org convention)
+├── index.json                        # machine-readable manifest: section ↔ sample ↔ source
 ├── AGENTS.md                         # orientation + ground rules for agents/humans
 ├── LICENSE                           # MIT
 ├── docs/
