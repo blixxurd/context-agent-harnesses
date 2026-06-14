@@ -15,7 +15,8 @@ context to read from, and as a place to extend with more verified guidance.
 - `index.json` — machine-readable navigation manifest. Pre-joins each guide section
   (stable ids `#s0`–`#s12`) to its code samples and primary sources. Use it to navigate
   programmatically instead of parsing the markdown index tables. Keep it in sync when you
-  add/move a section, sample, or source.
+  add/move a section, sample, or source — `node scripts/validate-index.mjs` checks it and
+  `--fix` regenerates the section line ranges (see *Verifying*).
 - `docs/agent-harness-best-practices.md` — the master guide. Start here.
 - `code_samples/typescript/` — 10 type-checked TS samples (primary).
 - `code_samples/python/` — 3 illustrative Python samples.
@@ -44,13 +45,23 @@ context to read from, and as a place to extend with more verified guidance.
   `ANTHROPIC_API_KEY` from the environment.
 - **Samples are type-checked, not executed in CI** (running makes billed API calls).
   Note that distinction if you claim something "works".
+- **`index.json` must stay consistent with the files it describes.** After editing the
+  guide, a sample, or a source, run the index validator (below). If you edited the guide
+  above a section, the recorded line ranges go stale — `--fix` regenerates them from the
+  `<a id="sN">` anchors (the anchors, not the line numbers, are the durable contract).
 
 ## Verifying
 
 ```bash
+# 1. Code samples type-check (TypeScript)
 cd code_samples/typescript
 npm install
 npm run typecheck        # tsc --noEmit --strict, must exit 0
+
+# 2. Navigation manifest is consistent (zero-dependency Node script, run from repo root)
+node scripts/validate-index.mjs        # anchors, line ranges, sample/source links — exit 0
+node scripts/validate-index.mjs --fix  # regenerate stale section line ranges in index.json
 ```
 
-CI (`.github/workflows/typecheck.yml`) runs the same check on pushes and PRs.
+CI runs both checks on pushes and PRs: `.github/workflows/typecheck.yml` (type-check)
+and `.github/workflows/validate-index.yml` (manifest consistency).

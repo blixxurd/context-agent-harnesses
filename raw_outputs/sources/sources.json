@@ -35,7 +35,7 @@
     "id": "source-04",
     "key": "ct",
     "title": "Give Claude custom tools \u2014 Claude Agent SDK Docs",
-    "url": "https://platform.claude.com/docs/en/agent-sdk/custom-tools",
+    "url": "https://code.claude.com/docs/en/agent-sdk/custom-tools",
     "claims": 6,
     "topic": "claude-agent-sdk-specifics"
   },
@@ -75,7 +75,7 @@
     "id": "source-09",
     "key": "ts",
     "title": "Agent SDK reference - TypeScript - Claude API Docs",
-    "url": "https://platform.claude.com/docs/en/agent-sdk/typescript",
+    "url": "https://code.claude.com/docs/en/agent-sdk/typescript",
     "claims": 7,
     "topic": "claude-agent-sdk-specifics"
   },
@@ -83,7 +83,7 @@
     "id": "source-10",
     "key": "perm",
     "title": "Configure permissions (Handling Permissions - Claude Agent SDK Docs)",
-    "url": "https://docs.claude.com/en/docs/agent-sdk/permissions",
+    "url": "https://code.claude.com/docs/en/agent-sdk/permissions",
     "claims": 6,
     "topic": "permissions-and-sandboxing"
   },
@@ -115,7 +115,7 @@
     "id": "source-14",
     "key": "ov",
     "title": "Agent SDK overview - Claude API Docs",
-    "url": "https://platform.claude.com/docs/en/agent-sdk/overview",
+    "url": "https://code.claude.com/docs/en/agent-sdk/overview",
     "claims": 6,
     "topic": "claude-agent-sdk-specifics"
   },
@@ -195,7 +195,7 @@
     "id": "source-24",
     "key": "sa",
     "title": "Subagents in the SDK - Claude API Docs",
-    "url": "https://platform.claude.com/docs/en/agent-sdk/subagents",
+    "url": "https://code.claude.com/docs/en/agent-sdk/subagents",
     "claims": 6,
     "topic": "subagents-and-orchestration"
   },

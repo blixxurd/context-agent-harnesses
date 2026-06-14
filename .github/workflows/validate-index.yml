@@ -1,0 +1,32 @@
+name: validate-index
+
+# Keeps index.json honest: anchors, line ranges, sample/source paths, and
+# section<->sample<->source links must stay consistent with the files on disk.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.json"
+      - "docs/**"
+      - "code_samples/**"
+      - "raw_outputs/sources/sources.json"
+      - "scripts/validate-index.mjs"
+      - ".github/workflows/validate-index.yml"
+  pull_request:
+    paths:
+      - "index.json"
+      - "docs/**"
+      - "code_samples/**"
+      - "raw_outputs/sources/sources.json"
+      - "scripts/validate-index.mjs"
+      - ".github/workflows/validate-index.yml"
+
+jobs:
+  validate-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: node scripts/validate-index.mjs

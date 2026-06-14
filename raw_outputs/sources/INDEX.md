@@ -24,12 +24,12 @@ Crosswalk for the primary sources behind the guide. Each row joins the **citatio
 | Key | File | Claims | Topic (search angle) | Title / URL |
 |---|---|---|---|---|
 | `[loop]` | [`source-16.md`](source-16.md) | 7 | `core-agentic-loop` | [How the agent loop works — Claude Code Docs](https://code.claude.com/docs/en/agent-sdk/agent-loop) |
-| `[ct]` | [`source-04.md`](source-04.md) | 6 | `claude-agent-sdk-specifics` | [Give Claude custom tools — Claude Agent SDK Docs](https://platform.claude.com/docs/en/agent-sdk/custom-tools) |
-| `[perm]` | [`source-10.md`](source-10.md) | 6 | `permissions-and-sandboxing` | [Configure permissions (Handling Permissions - Claude Agent SDK Docs)](https://docs.claude.com/en/docs/agent-sdk/permissions) |
-| `[sa]` | [`source-24.md`](source-24.md) | 6 | `subagents-and-orchestration` | [Subagents in the SDK - Claude API Docs](https://platform.claude.com/docs/en/agent-sdk/subagents) |
+| `[ct]` | [`source-04.md`](source-04.md) | 6 | `claude-agent-sdk-specifics` | [Give Claude custom tools — Claude Agent SDK Docs](https://code.claude.com/docs/en/agent-sdk/custom-tools) |
+| `[perm]` | [`source-10.md`](source-10.md) | 6 | `permissions-and-sandboxing` | [Configure permissions (Handling Permissions - Claude Agent SDK Docs)](https://code.claude.com/docs/en/agent-sdk/permissions) |
+| `[sa]` | [`source-24.md`](source-24.md) | 6 | `subagents-and-orchestration` | [Subagents in the SDK - Claude API Docs](https://code.claude.com/docs/en/agent-sdk/subagents) |
 | `[obs]` | [`source-12.md`](source-12.md) | 4 | `observability-tracing-logging` | [Observability with OpenTelemetry - Claude Code Docs](https://code.claude.com/docs/en/agent-sdk/observability) |
-| `[ts]` | [`source-09.md`](source-09.md) | 7 | `claude-agent-sdk-specifics` | [Agent SDK reference - TypeScript - Claude API Docs](https://platform.claude.com/docs/en/agent-sdk/typescript) |
-| `[ov]` | [`source-14.md`](source-14.md) | 6 | `claude-agent-sdk-specifics` | [Agent SDK overview - Claude API Docs](https://platform.claude.com/docs/en/agent-sdk/overview) |
+| `[ts]` | [`source-09.md`](source-09.md) | 7 | `claude-agent-sdk-specifics` | [Agent SDK reference - TypeScript - Claude API Docs](https://code.claude.com/docs/en/agent-sdk/typescript) |
+| `[ov]` | [`source-14.md`](source-14.md) | 6 | `claude-agent-sdk-specifics` | [Agent SDK overview - Claude API Docs](https://code.claude.com/docs/en/agent-sdk/overview) |
 | `[sb]` | [`source-20.md`](source-20.md) | 6 | `permissions-and-sandboxing` | [Configure the sandboxed Bash tool - Claude Code Docs](https://code.claude.com/docs/en/sandboxing) |
 | `[mt]` | [`source-22.md`](source-22.md) | 6 | `context-window-and-memory` | [Memory tool — Claude Docs](https://docs.claude.com/en/docs/agents-and-tools/tool-use/memory-tool) |
 | `[xml]` | [`source-23.md`](source-23.md) | 6 | `system-prompt-and-instructions` | [Use XML tags to structure your prompts — Claude Docs](https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags) |
