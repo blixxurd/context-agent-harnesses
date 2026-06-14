@@ -22,6 +22,23 @@ theme (TypeScript + Python). See the [code samples index](code_samples/README.md
 domain-agnostic playbook for emulating this repo's structure: the patterns that make it
 cheap for an LLM agent to navigate, with a copyable template and checklist.
 
+## Use it as a Claude Code plugin
+
+This repo is also a [Claude Code](https://code.claude.com/docs/en/plugins) plugin: it
+ships a skill that routes Claude through the bundled guide, samples, and sources on
+demand (it navigates the manifest and reads only the relevant section — it does not load
+the whole guide into context). Install it in any project:
+
+```
+/plugin marketplace add blixxurd/context-agent-harnesses
+/plugin install agent-harness@harness-reference
+```
+
+The skill then auto-triggers on agent-harness work (the loop, tool design, context,
+permissions, subagents, evals, …). Packaging lives in
+[`.claude-plugin/`](.claude-plugin/) and [`skills/`](skills/); the content stays in
+`docs/`, `code_samples/`, and `raw_outputs/` — a single source of truth.
+
 ## How it was built
 
 A deep-research workflow fanned out across **13 angles**, ran parallel web searches,

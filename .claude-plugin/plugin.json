@@ -1,0 +1,10 @@
+{
+  "name": "agent-harness",
+  "description": "A cited, fact-checked reference on building agent harnesses (the runtime/agentic loop around an LLM). A skill routes Claude through the bundled guide, code samples, and primary sources on demand.",
+  "version": "1.0.0",
+  "author": { "name": "Fidget Softworks, LLC" },
+  "homepage": "https://github.com/blixxurd/context-agent-harnesses",
+  "repository": "https://github.com/blixxurd/context-agent-harnesses",
+  "license": "MIT",
+  "keywords": ["agents", "agent-sdk", "harness", "tools", "context-engineering", "evals"]
+}
