@@ -1,0 +1,40 @@
+# Agent Harness Best Practices
+
+> A cited, fact-checked reference on building **agent harnesses** — the runtime/agentic
+> loop that wraps an LLM and turns it into an autonomous agent. Language-agnostic
+> principles with the Anthropic Claude Agent SDK as the concrete reference, plus
+> runnable, type-checked TypeScript and Python code samples. Built from 25 primary
+> sources and 150 adversarially-verified claims.
+
+This file follows the llms.txt convention (https://llmstxt.org) to help LLMs and agents
+navigate the repository. Read the master guide first; it links to every code sample and
+source.
+
+## Core documentation
+
+- [Master guide](docs/agent-harness-best-practices.md): 12 themed sections (agentic loop, tool design, context/memory, system prompts, subagents, permissions/safety, hooks, resilience/streaming, observability, evals, file structure, Claude Agent SDK), plus a decision cheat-sheet and anti-patterns. Every claim is cited.
+- [README](README.md): repository overview, structure, and how the research was produced.
+- [Code samples index](code_samples/README.md): maps each runnable sample to a guide section.
+
+## Code samples (runnable, type-checked)
+
+- [TypeScript: minimal agent loop](code_samples/typescript/01-minimal-agent-loop.ts): the agentic loop from scratch on the raw Messages API.
+- [TypeScript: tool result contract](code_samples/typescript/02-tool-result-contract.ts): poka-yoke args, errors-as-data, bounded output, response_format.
+- [TypeScript: Agent SDK quickstart](code_samples/typescript/03-agent-sdk-quickstart.ts): query(), maxTurns/maxBudgetUsd, result subtypes.
+- [TypeScript: custom MCP tools](code_samples/typescript/04-custom-tools-mcp.ts): in-process MCP server, tool naming, allow rules.
+- [TypeScript: subagents & orchestration](code_samples/typescript/05-subagents-orchestration.ts): context isolation; when not to go multi-agent.
+- [TypeScript: permissions & hooks](code_samples/typescript/06-permissions-and-hooks.ts): the permission pipeline, canUseTool, deny rules.
+- [TypeScript: context & memory](code_samples/typescript/07-context-and-memory.ts): compaction, context editing, a hardened memory-tool handler.
+- [TypeScript: streaming](code_samples/typescript/08-streaming.ts): correct streamed-message reassembly.
+- [TypeScript: observability](code_samples/typescript/09-observability.ts): OpenTelemetry config + app-level tracing.
+- [TypeScript: eval harness](code_samples/typescript/10-eval-harness.ts): isolated trials, outcome grading, pass^k.
+- [Python: minimal agent loop](code_samples/python/01_minimal_agent_loop.py)
+- [Python: tool contract](code_samples/python/02_tool_contract.py)
+- [Python: Agent SDK quickstart](code_samples/python/03_agent_sdk_quickstart.py)
+
+## Optional / raw material
+
+- [Findings digest](raw_outputs/synthesis/findings-digest.md): granular 12-theme digest with per-claim source attribution.
+- [Verified claims ledger](raw_outputs/claims/verified-claims.json): 150 surviving claims (+ 4 dropped) with sources and supporting quotes.
+- [Fetched sources](raw_outputs/sources/): full extracted text of all 25 primary sources.
+- [Search dumps](raw_outputs/search/): per-angle web-search results.

@@ -1,0 +1,1546 @@
+{
+  "survivors": [
+    {
+      "id": "c0",
+      "text": "Anthropic draws a concrete architectural distinction: workflows are systems where LLMs and tools are orchestrated through predefined code paths, whereas agents are systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks.",
+      "topic": "core-agentic-loop",
+      "sourceUrl": "https://www.anthropic.com/research/building-effective-agents",
+      "sourceTitle": "Building Effective AI Agents — Anthropic",
+      "sourceQuote": "Workflows: \"systems where LLMs and tools are orchestrated through predefined code paths\" ... Agents: \"systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks\"",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c1",
+      "text": "In the SWE-bench agent, switching tool arguments to absolute filepaths (instead of relative paths) prevented model errors, demonstrating a checkable tool-design fix.",
+      "topic": "project-file-structure",
+      "sourceUrl": "https://www.anthropic.com/research/building-effective-agents",
+      "sourceTitle": "Building Effective AI Agents — Anthropic",
+      "sourceQuote": "discovering that absolute filepaths prevented model errors with relative paths",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c2",
+      "text": "When building the SWE-bench agent, developers spent more time optimizing the tools (the agent-computer interface) than optimizing the overall prompt.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://www.anthropic.com/research/building-effective-agents",
+      "sourceTitle": "Building Effective AI Agents — Anthropic",
+      "sourceQuote": "developers \"spent more time optimizing tools than the overall prompt\"",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c3",
+      "text": "Tool descriptions should be written in detail as if documenting code for a junior developer, and tools should be tested extensively in a workbench before deployment.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://www.anthropic.com/research/building-effective-agents",
+      "sourceTitle": "Building Effective AI Agents — Anthropic",
+      "sourceQuote": "Write detailed tool descriptions as if documenting code for junior developers ... Test extensively in workbenches",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c4",
+      "text": "Apply poka-yoke (error-proofing) principles by redesigning tool arguments to make it harder for the model to make mistakes.",
+      "topic": "error-handling-and-resilience",
+      "sourceUrl": "https://www.anthropic.com/research/building-effective-agents",
+      "sourceTitle": "Building Effective AI Agents — Anthropic",
+      "sourceQuote": "Apply \"poka-yoke\" principles—redesign arguments to make mistakes harder",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c5",
+      "text": "Tool and format design should give the model enough tokens to think before it writes itself into a corner, and keep formats close to text the model has seen naturally occurring (avoiding formatting overhead like line counting or complex escaping).",
+      "topic": "core-agentic-loop",
+      "sourceUrl": "https://www.anthropic.com/research/building-effective-agents",
+      "sourceTitle": "Building Effective AI Agents — Anthropic",
+      "sourceQuote": "Give models \"enough tokens to think before it writes itself into a corner\" ... Keep formats \"close to what the model has seen naturally occurring in text\" ... Eliminate formatting overhead (avoid line counting, complex escaping)",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c6",
+      "text": "Tools should consolidate functionality for agent workflows rather than mirror raw API endpoints; e.g., implement a single schedule_event tool (handling availability plus scheduling) instead of separate list_users, list_events, and create_event tools.",
+      "topic": "tool-design-and-result-contract",
+      "sourceUrl": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+      "sourceTitle": "Writing effective tools for AI agents—using AI agents (Anthropic Engineering)",
+      "sourceQuote": "Implement `schedule_event` (handles availability + scheduling) rather than separate `list_users`, `list_events`, and `create_event` tools.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c7",
+      "text": "Claude Code restricts tool responses to 25,000 tokens by default to enforce token efficiency.",
+      "topic": "tool-design-and-result-contract",
+      "sourceUrl": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+      "sourceTitle": "Writing effective tools for AI agents—using AI agents (Anthropic Engineering)",
+      "sourceQuote": "Claude Code restricts responses to 25,000 tokens by default.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c8",
+      "text": "Exposing a response_format enum (e.g., concise vs detailed) lets agents control verbosity; the detailed response consumed 206 tokens versus 72 tokens for the concise response.",
+      "topic": "tool-design-and-result-contract",
+      "sourceUrl": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+      "sourceTitle": "Writing effective tools for AI agents—using AI agents (Anthropic Engineering)",
+      "sourceQuote": "expose a `response_format` enum allowing agents to request `\"concise\"` or `\"detailed\"` responses—the detailed version consumed 206 tokens versus 72 for concise.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c9",
+      "text": "Tool error messages should be specific and suggest actionable improvements rather than returning opaque error codes.",
+      "topic": "error-handling-and-resilience",
+      "sourceUrl": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+      "sourceTitle": "Writing effective tools for AI agents—using AI agents (Anthropic Engineering)",
+      "sourceQuote": "Craft error messages to be \"specific and actionable improvements, rather than opaque error codes.\"",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c10",
+      "text": "Related tools should be grouped under common prefixes (namespacing), such as asana_projects_search and asana_users_search, to reduce agent confusion when many tools are available.",
+      "topic": "tool-design-and-result-contract",
+      "sourceUrl": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+      "sourceTitle": "Writing effective tools for AI agents—using AI agents (Anthropic Engineering)",
+      "sourceQuote": "Group related tools under common prefixes (e.g., `asana_projects_search`, `asana_users_search`). This reduces confusion when agents access hundreds of tools.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c11",
+      "text": "Tool parameters should be named unambiguously, for example using user_id instead of user, and tool descriptions should explicitly describe query formats and relationships between resources.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+      "sourceTitle": "Writing effective tools for AI agents—using AI agents (Anthropic Engineering)",
+      "sourceQuote": "Unambiguously name parameters (use `user_id` instead of `user`). Explicitly describe specialized query formats and relationships between resources.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c12",
+      "text": "LLMs exhibit degraded performance as context length increases (\"context rot\"), a phenomenon measurable via needle-in-a-haystack benchmarking, because transformer attention scales with n-squared token relationships, creating a finite attention budget with diminishing marginal returns.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "sourceTitle": "Effective context engineering for AI agents — Anthropic",
+      "sourceQuote": "LLMs experience degraded performance as context length increases—a phenomenon documented through \"needle-in-a-haystack\" benchmarking. This stems from transformer architecture's n² token relationships, creating what the article calls an \"attention budget\" with diminishing marginal returns.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c13",
+      "text": "System prompts should be calibrated to the \"right altitude,\" avoiding both overly rigid hardcoded if-else logic (which is brittle) and vague high-level guidance (which is ineffective).",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "sourceTitle": "Effective context engineering for AI agents — Anthropic",
+      "sourceQuote": "The optimal approach avoids two extremes: overly rigid if-else logic (brittle) and vague guidance (ineffective). Effective prompts hit the \"right altitude\"—specific enough to guide behavior, flexible enough to leverage model heuristics.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c14",
+      "text": "Agent tools should be self-contained, token-efficient, and have minimal functional overlap, because bloated tool sets create ambiguity for the agent about which tool to use.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "sourceTitle": "Effective context engineering for AI agents — Anthropic",
+      "sourceQuote": "Tools should be self-contained with minimal functional overlap. Bloated tool sets create ambiguity; well-designed tools remain \"token efficient\" while encouraging efficient agent behaviors.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c15",
+      "text": "Agents should use just-in-time retrieval—holding lightweight identifiers such as file paths and URLs and dynamically loading data via tools at runtime—rather than pre-loading all context up front; Claude Code does this using targeted queries and Bash commands.",
+      "topic": "project-file-structure",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "sourceTitle": "Effective context engineering for AI agents — Anthropic",
+      "sourceQuote": "Rather than pre-loading all context, agents use lightweight identifiers (file paths, URLs) and dynamically load data via tools. Claude Code exemplifies this, using targeted queries and Bash commands to analyze large datasets without exhausting context.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c16",
+      "text": "For long-horizon tasks, agents should maintain external memory through structured note-taking (e.g., NOTES.md files) to persist state across context resets.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "sourceTitle": "Effective context engineering for AI agents — Anthropic",
+      "sourceQuote": "Structured Note-Taking: Agents maintain external memory (NOTES.md files) for persistent state across context resets",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c17",
+      "text": "Compaction extends long-horizon agent runs by summarizing conversation history, preserving architectural decisions while discarding redundant tool outputs.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "sourceTitle": "Effective context engineering for AI agents — Anthropic",
+      "sourceQuote": "Compaction: Summarizing conversation history, preserving architectural decisions while discarding redundant outputs",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c18",
+      "text": "Critical agent instructions should be placed in a CLAUDE.md file (or AGENTS.md) because such content lives in the system prompt and survives context compaction, preserving rules that would otherwise be dropped.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://github.com/ai-boost/awesome-harness-engineering",
+      "sourceTitle": "awesome-harness-engineering — GitHub",
+      "sourceQuote": "CLAUDE.md / AGENTS.md: Agent-specific instructions (survives compaction; lives in system prompt)",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c19",
+      "text": "Harness authorization should be evaluated in a fixed five-layer order: (1) Hooks, (2) Deny rules, (3) Permission mode, (4) Allow rules, (5) canUseTool — encoding authorization into the harness rather than relying on prompts alone.",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://github.com/ai-boost/awesome-harness-engineering",
+      "sourceTitle": "awesome-harness-engineering — GitHub",
+      "sourceQuote": "Five-layer evaluation order: 1. Hooks 2. Deny rules 3. Permission mode 4. Allow rules 5. canUseTool",
+      "refutes": 1,
+      "survives": true
+    },
+    {
+      "id": "c22",
+      "text": "A portable .agent/ folder can serve as a cross-tool harness layer with adapters for Claude Code, Cursor, Codex CLI, and Gemini CLI, standardizing harness artifacts across different agent tools.",
+      "topic": "project-file-structure",
+      "sourceUrl": "https://github.com/ai-boost/awesome-harness-engineering",
+      "sourceTitle": "awesome-harness-engineering — GitHub",
+      "sourceQuote": ".agent/ folder: Portable cross-tool harness layer with adapters for Claude Code, Cursor, Codex CLI, Gemini CLI",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c23",
+      "text": "When using extended thinking, thinking blocks must be preserved when passing tool results back to the model, and budget_tokens controls reasoning depth.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://github.com/ai-boost/awesome-harness-engineering",
+      "sourceTitle": "awesome-harness-engineering — GitHub",
+      "sourceQuote": "Extended thinking integration: budget_tokens controls reasoning depth; thinking blocks must be preserved when passing tool results back",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c24",
+      "text": "Custom MCP tools exposed to Claude in the Agent SDK follow the name pattern mcp__{server_name}__{tool_name}, where the server_name is the key used in the mcpServers option; e.g. a get_temperature tool on a 'weather' server becomes mcp__weather__get_temperature.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/custom-tools",
+      "sourceTitle": "Give Claude custom tools — Claude Agent SDK Docs",
+      "sourceQuote": "Pattern: `mcp__{server_name}__{tool_name}`\n* Example: A tool named `get_temperature` in server `weather` becomes `mcp__weather__get_temperature`",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c25",
+      "text": "If a custom tool handler throws an uncaught exception the agent loop stops and the query call fails, whereas catching the error and returning isError: true (TS) / is_error: True (Python) keeps the agent loop running so Claude can react to the error as data.",
+      "topic": "agent-harness-best-practices",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/custom-tools",
+      "sourceTitle": "Give Claude custom tools — Claude Agent SDK Docs",
+      "sourceQuote": "Handler throws an uncaught exception | Agent loop stops. Claude never sees the error, and the `query` call fails. ... Handler catches the error and returns `isError: true` (TS) / `\"is_error\": True` (Python) | Agent loop continues. Claude sees the error as data and can retry, try a different tool, or explain the failure.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c26",
+      "text": "Setting readOnlyHint: true on a tool controls whether that tool can be called in parallel with other read-only tools; readOnlyHint defaults to false.",
+      "topic": "tool-design",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/custom-tools",
+      "sourceTitle": "Give Claude custom tools — Claude Agent SDK Docs",
+      "sourceQuote": "`readOnlyHint` | `false` | Tool does not modify its environment. Controls whether the tool can be called in parallel with other read-only tools.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c27",
+      "text": "Every tool listed in a server's tools array consumes context window space on every turn, so for dozens of tools the docs recommend using tool search to load them on demand.",
+      "topic": "context-management",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/custom-tools",
+      "sourceTitle": "Give Claude custom tools — Claude Agent SDK Docs",
+      "sourceQuote": "Every tool in this array consumes context window space on every turn. If you're defining dozens of tools, see [tool search](/en/agent-sdk/tool-search) to load them on demand instead.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c28",
+      "text": "In the Agent SDK, the tools option and bare-name disallowedTools entries change tool availability (whether a tool appears in Claude's context), while allowedTools and scoped disallowedTools rules change only permission; tools: [] removes all built-ins, leaving Claude only custom MCP tools.",
+      "topic": "project-file-structure",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/custom-tools",
+      "sourceTitle": "Give Claude custom tools — Claude Agent SDK Docs",
+      "sourceQuote": "`tools` and bare-name `disallowedTools` entries change availability. `allowedTools` and scoped `disallowedTools` rules change permission only. ... `tools: []` | Availability | All built-ins are removed. Claude can only use your MCP tools.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c29",
+      "text": "The Python @tool decorator forwards only content and is_error from the handler's return dict, so returning structuredContent from Python requires running a standalone MCP server rather than an in-process SDK server.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/custom-tools",
+      "sourceTitle": "Give Claude custom tools — Claude Agent SDK Docs",
+      "sourceQuote": "The Python `@tool` decorator forwards only `content` and `is_error` from the handler's return dict. To return `structuredContent` from Python, run a [standalone MCP server](/en/agent-sdk/mcp) instead of an in-process SDK server.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c30",
+      "text": "Adding OS-level sandboxes to Claude Code (Seatbelt on macOS, bubblewrap on Linux) reduced permission prompts by 84%, addressing the fatigue where users approved roughly 93% of permission prompts.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://www.anthropic.com/engineering/how-we-contain-claude",
+      "sourceTitle": "How we contain Claude across products - Anthropic Engineering",
+      "sourceQuote": "users approved roughly 93% of permission prompts",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c31",
+      "text": "Under an approval-based defense, Claude Code users approved roughly 93% of permission prompts, demonstrating that human-in-the-loop approval degrades into rubber-stamping.",
+      "topic": "safety-guardrails",
+      "sourceUrl": "https://www.anthropic.com/engineering/how-we-contain-claude",
+      "sourceTitle": "How we contain Claude across products - Anthropic Engineering",
+      "sourceQuote": "users approved roughly 93% of permission prompts",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c32",
+      "text": "Project-local configuration such as .claude/settings.json hooks should not be parsed or executed until after the user accepts the trust prompt, because code was previously executed before users consented.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://www.anthropic.com/engineering/how-we-contain-claude",
+      "sourceTitle": "How we contain Claude across products - Anthropic Engineering",
+      "sourceQuote": "Defer parsing and execution of project-local configuration until after the user accepts the trust prompt.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c33",
+      "text": "Symlink resolution must happen before path validation, not after; otherwise a symlink inside an authorized folder can point outside it and escape the filesystem boundary.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://www.anthropic.com/engineering/how-we-contain-claude",
+      "sourceTitle": "How we contain Claude across products - Anthropic Engineering",
+      "sourceQuote": "Symlink resolution has to happen before path validation, not after, or a symlink inside an authorized folder can point outside and escape.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c34",
+      "text": "A destination-allowlist egress proxy is insufficient: Claude was made to exfiltrate files to api.anthropic.com with attacker-controlled API keys because the proxy only checked the destination domain; the fix was a man-in-the-middle proxy inside the VM accepting only the VM's provisioned session token.",
+      "topic": "safety-guardrails",
+      "sourceUrl": "https://www.anthropic.com/engineering/how-we-contain-claude",
+      "sourceTitle": "How we contain Claude across products - Anthropic Engineering",
+      "sourceQuote": "The egress proxy checked the destination, saw api.anthropic.com, and let it through.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c35",
+      "text": "Claude Code's auto-mode command classifier blocks roughly 0.4% of benign commands while missing about 17% of overeager actions, so model-layer defenses are one layer of defense-in-depth, not a substitute for environmental containment.",
+      "topic": "safety-guardrails",
+      "sourceUrl": "https://www.anthropic.com/engineering/how-we-contain-claude",
+      "sourceTitle": "How we contain Claude across products - Anthropic Engineering",
+      "sourceQuote": "roughly 0.4% of benign commands blocked",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c36",
+      "text": "The initializer agent creates an init.sh script that sets up the environment and starts the development server, which coding agents read at the start of every session to learn how to run the app.",
+      "topic": "project-file-structure",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "sourceTitle": "Effective harnesses for long-running agents — Anthropic Engineering",
+      "sourceQuote": "Creates `init.sh` script for environment setup",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c37",
+      "text": "The harness uses a dedicated progress log file named claude-progress.txt that the initializer creates and each coding agent reads at session start and updates at session end to carry state across memoryless sessions.",
+      "topic": "project-file-structure",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "sourceTitle": "Effective harnesses for long-running agents — Anthropic Engineering",
+      "sourceQuote": "Generates `claude-progress.txt` for logging agent activity",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c38",
+      "text": "Project requirements are encoded as a structured JSON feature list containing over 200 discrete features, each tracked with a pass/fail status, category, and step-by-step description.",
+      "topic": "project-file-structure",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "sourceTitle": "Effective harnesses for long-running agents — Anthropic Engineering",
+      "sourceQuote": "A structured JSON file containing over 200 discrete features, each marked as passing or failing.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c39",
+      "text": "Agents are explicitly instructed that removing or editing tests is unacceptable, because doing so could lead to missing or buggy functionality.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "sourceTitle": "Effective harnesses for long-running agents — Anthropic Engineering",
+      "sourceQuote": "It is unacceptable to remove or edit tests because this could lead to missing or buggy functionality.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c40",
+      "text": "Coding agents make incremental progress on a single feature per session and use git commits for state management and recovery from failed changes, rather than attempting full implementation at once.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "sourceTitle": "Effective harnesses for long-running agents — Anthropic Engineering",
+      "sourceQuote": "agents work through one feature at a time, using git for state management and recovery from failed changes",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c41",
+      "text": "Agents must verify features end-to-end using browser automation via the Puppeteer MCP for web applications, replicating actual user workflows rather than relying solely on unit tests or API calls.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "sourceTitle": "Effective harnesses for long-running agents — Anthropic Engineering",
+      "sourceQuote": "Agents must verify features end-to-end using appropriate tools (browser automation via Puppeteer MCP for web applications). Testing must replicate actual user workflows rather than relying solely on unit tests or API calls.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c42",
+      "text": "Input guardrails run only on the first agent in a chain, while output guardrails run only on the last agent producing final output; they do not execute on intermediate agents.",
+      "topic": "safety-guardrails",
+      "sourceUrl": "https://openai.github.io/openai-agents-python/guardrails/",
+      "sourceTitle": "Guardrails — OpenAI Agents SDK",
+      "sourceQuote": "Input guardrails execute only for the first agent in a chain - Output guardrails execute only for the final agent producing output",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c43",
+      "text": "When a guardrail's tripwire is triggered, the SDK immediately raises an InputGuardrailTripwireTriggered or OutputGuardrailTripwireTriggered exception and halts agent execution.",
+      "topic": "error-handling-and-resilience",
+      "sourceUrl": "https://openai.github.io/openai-agents-python/guardrails/",
+      "sourceTitle": "Guardrails — OpenAI Agents SDK",
+      "sourceQuote": "As soon as we see a guardrail that has triggered the tripwires, we immediately raise a `{Input,Output}GuardrailTripwireTriggered` exception and halt the Agent execution.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c44",
+      "text": "By default input guardrails run in parallel (concurrently) with the agent for lower latency, which means the agent may consume tokens before being cancelled if the guardrail fails.",
+      "topic": "error-handling-and-resilience",
+      "sourceUrl": "https://openai.github.io/openai-agents-python/guardrails/",
+      "sourceTitle": "Guardrails — OpenAI Agents SDK",
+      "sourceQuote": "Parallel execution (default): Guardrail runs concurrently with agent execution for better latency. However, the agent may consume tokens before being cancelled if the guardrail fails.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c45",
+      "text": "In blocking execution mode the input guardrail completes before the agent starts, so if it triggers the agent never executes, preventing token consumption and tool side effects.",
+      "topic": "safety-guardrails",
+      "sourceUrl": "https://openai.github.io/openai-agents-python/guardrails/",
+      "sourceTitle": "Guardrails — OpenAI Agents SDK",
+      "sourceQuote": "Blocking execution: The guardrail completes before the agent starts. If triggered, the agent never executes, preventing token consumption and tool side effects. This optimizes costs.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c46",
+      "text": "Tool guardrails apply only to tools created with the function_tool decorator and do not apply to handoffs, hosted tools, or built-in execution tools.",
+      "topic": "safety-guardrails",
+      "sourceUrl": "https://openai.github.io/openai-agents-python/guardrails/",
+      "sourceTitle": "Guardrails — OpenAI Agents SDK",
+      "sourceQuote": "They apply only to tools created with `function_tool` decorator, not to handoffs, hosted tools, or built-in execution tools.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c47",
+      "text": "A guardrail is implemented as a function that returns a GuardrailFunctionOutput, whose tripwire_triggered field determines whether execution is halted.",
+      "topic": "safety-guardrails",
+      "sourceUrl": "https://openai.github.io/openai-agents-python/guardrails/",
+      "sourceTitle": "Guardrails — OpenAI Agents SDK",
+      "sourceQuote": "Guardrails require a function returning `GuardrailFunctionOutput`. The provided code example demonstrates a math homework detection guardrail using an internal agent that evaluates input and sets `tripwire_triggered` accordingly.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c48",
+      "text": "In the deepagents harness, each skill is a directory containing a SKILL.md file; the agent reads the frontmatter at startup and only loads the full content when needed (progressive disclosure), reducing token usage.",
+      "topic": "project-file-structure",
+      "sourceUrl": "https://docs.langchain.com/oss/python/deepagents/harness",
+      "sourceTitle": "Harness capabilities - Docs by LangChain (deepagents)",
+      "sourceQuote": "Each skill is a directory containing a `SKILL.md` file with instructions and metadata ... Agent reads frontmatter at startup, reviews full content when needed ... Reduces token usage by avoiding unnecessary skill loading",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c49",
+      "text": "Persistent memory in the deepagents harness uses AGENTS.md files passed to the memory parameter at agent creation, and unlike skills these files are always loaded (not progressively disclosed).",
+      "topic": "project-file-structure",
+      "sourceUrl": "https://docs.langchain.com/oss/python/deepagents/harness",
+      "sourceTitle": "Harness capabilities - Docs by LangChain (deepagents)",
+      "sourceQuote": "Persistent memory using `AGENTS.md` files provides context across conversations: - Always loaded (unlike skills with progressive disclosure) - Pass file paths to the `memory` parameter during agent creation",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c50",
+      "text": "For Anthropic models, create_deep_agent automatically applies prompt caching to static system prompt sections (base instructions, memory, skills) by default with no configuration required.",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://docs.langchain.com/oss/python/deepagents/harness",
+      "sourceTitle": "Harness capabilities - Docs by LangChain (deepagents)",
+      "sourceQuote": "For Anthropic models, `create_deep_agent` automatically applies prompt caching to static system prompt sections (base instructions, memory, skills), reducing latency and cost. Enabled by default with no configuration required.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c51",
+      "text": "The deepagents harness pauses execution before specified tool calls for human approval via the interrupt_on parameter, which maps tool names to interrupt configs (e.g., interrupt_on={\"edit_file\": True} pauses before every edit).",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://docs.langchain.com/oss/python/deepagents/harness",
+      "sourceTitle": "Harness capabilities - Docs by LangChain (deepagents)",
+      "sourceQuote": "Configure via `interrupt_on` parameter (tool name to interrupt config mapping) - Example: `interrupt_on={\"edit_file\": True}` pauses before every edit",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c52",
+      "text": "Filesystem permission rules in the deepagents harness are evaluated first-matching-rule-wins, with each rule specifying operations, paths (glob patterns), and mode (allow/deny); if no rule matches the operation is allowed, and permissions do not apply to sandbox backends.",
+      "topic": "project-file-structure",
+      "sourceUrl": "https://docs.langchain.com/oss/python/deepagents/harness",
+      "sourceTitle": "Harness capabilities - Docs by LangChain (deepagents)",
+      "sourceQuote": "First matching rule wins; if no match, operation is allowed ... Permissions do not apply to sandbox backends, which support arbitrary command execution.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c53",
+      "text": "The write_todos tool lets agents maintain structured task lists tracking tasks with the statuses 'pending', 'in_progress', and 'completed', persisted in agent state.",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://docs.langchain.com/oss/python/deepagents/harness",
+      "sourceTitle": "Harness capabilities - Docs by LangChain (deepagents)",
+      "sourceQuote": "Track tasks with statuses: `'pending'`, `'in_progress'`, `'completed'` - Persisted in agent state",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c54",
+      "text": "In the Claude Agent SDK for TypeScript, the query() options default permissionMode is 'default', and the available modes are default, acceptEdits, bypassPermissions, plan, dontAsk, and auto (where 'auto' uses a model classifier and 'dontAsk' denies anything not pre-approved without prompting).",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/typescript",
+      "sourceTitle": "Agent SDK reference - TypeScript - Claude API Docs",
+      "sourceQuote": "| `permissionMode` | `PermissionMode` | `'default'` | Permission mode for the session |",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c55",
+      "text": "The allowedTools option (tools auto-approved without prompting) defaults to an empty array [], and disallowedTools also defaults to [], so by default no tools are pre-approved or pre-denied via these lists.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/typescript",
+      "sourceTitle": "Agent SDK reference - TypeScript - Claude API Docs",
+      "sourceQuote": "| `allowedTools` | `string[]` | `[]` | Tools to auto-approve without prompting |",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c56",
+      "text": "The SDK defaults the CLAUDE_CODE_MAX_RETRIES environment variable to 10 retries and API_TIMEOUT_MS to 600000 ms (10 minutes); these are tunable by passing the env option.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/typescript",
+      "sourceTitle": "Agent SDK reference - TypeScript - Claude API Docs",
+      "sourceQuote": "CLAUDE_CODE_MAX_RETRIES: \"2\",                       // Default: 10",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c57",
+      "text": "The thinking option defaults to { type: 'adaptive' }, and the older maxThinkingTokens option is deprecated in favor of the thinking option.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/typescript",
+      "sourceTitle": "Agent SDK reference - TypeScript - Claude API Docs",
+      "sourceQuote": "| `thinking` | `ThinkingConfig` | `{ type: 'adaptive' }` | Controls thinking/reasoning behavior |",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c58",
+      "text": "The SDK loads filesystem settings from three sources by default — user (~/.claude/settings.json), project (.claude/settings.json), and local (.claude/settings.local.json) — and passing an empty array to settingSources disables loading filesystem settings entirely.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/typescript",
+      "sourceTitle": "Agent SDK reference - TypeScript - Claude API Docs",
+      "sourceQuote": "Default behavior loads all sources. Pass empty array `[]` to disable filesystem settings.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c59",
+      "text": "The maxBudgetUsd option causes the agent to stop once the estimated cost reaches the specified USD value, producing a result message with subtype 'error_max_budget_usd'.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/typescript",
+      "sourceTitle": "Agent SDK reference - TypeScript - Claude API Docs",
+      "sourceQuote": "| `maxBudgetUsd` | `number` | `undefined` | Stop when cost estimate reaches this USD value |",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c60",
+      "text": "Session persistence to disk is enabled by default (persistSession defaults to true), while file checkpointing for rewinding (enableFileCheckpointing) is disabled by default (false).",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/typescript",
+      "sourceTitle": "Agent SDK reference - TypeScript - Claude API Docs",
+      "sourceQuote": "| `persistSession` | `boolean` | `true` | Enable session persistence to disk |",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c61",
+      "text": "The Claude Agent SDK evaluates each tool request through a fixed ordered pipeline: hooks first, then deny rules, then ask rules, then permission mode, then allow rules, and finally the canUseTool callback.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://docs.claude.com/en/docs/agent-sdk/permissions",
+      "sourceTitle": "Configure permissions - Claude Agent SDK Docs",
+      "sourceQuote": "When Claude requests a tool, the SDK checks permissions in this order:",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c62",
+      "text": "Deny rules from disallowed_tools block a tool in every permission mode, including bypassPermissions, because deny and ask rules are evaluated before the permission mode check.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://docs.claude.com/en/docs/agent-sdk/permissions",
+      "sourceTitle": "Configure permissions - Claude Agent SDK Docs",
+      "sourceQuote": "If a deny rule matches, the tool is blocked, even in `bypassPermissions` mode.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c63",
+      "text": "allowed_tools only pre-approves listed tools and does not restrict bypassPermissions; setting allowed_tools=[\"Read\"] with permission_mode=\"bypassPermissions\" still approves every tool including Bash, Write, and Edit, so disallowed_tools must be used to block tools under bypass.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://docs.claude.com/en/docs/agent-sdk/permissions",
+      "sourceTitle": "Configure permissions - Claude Agent SDK Docs",
+      "sourceQuote": "Setting `allowed_tools=[\"Read\"]` alongside `permission_mode=\"bypassPermissions\"` still approves every tool, including `Bash`, `Write`, and `Edit`. If you need `bypassPermissions` but want specific tools blocked, use `disallowed_tools`.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c64",
+      "text": "To create a locked-down agent with a fixed tool surface, pair allowedTools with permissionMode \"dontAsk\": listed tools are approved and anything else is denied outright instead of prompting (canUseTool is never called).",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://docs.claude.com/en/docs/agent-sdk/permissions",
+      "sourceTitle": "Configure permissions - Claude Agent SDK Docs",
+      "sourceQuote": "For a locked-down agent, pair `allowedTools` with `permissionMode: \"dontAsk\"`. Listed tools are approved; anything else is denied outright instead of prompting",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c65",
+      "text": "acceptEdits mode auto-approves file edits (Edit, Write) and filesystem commands (mkdir, touch, rm, rmdir, mv, cp, sed) only for paths inside the working directory or additionalDirectories; paths outside that scope and writes to protected paths still prompt.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://docs.claude.com/en/docs/agent-sdk/permissions",
+      "sourceTitle": "Configure permissions - Claude Agent SDK Docs",
+      "sourceQuote": "Both apply only to paths inside the working directory or `additionalDirectories`. Paths outside that scope and writes to protected paths still prompt.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c66",
+      "text": "When the parent agent uses bypassPermissions, acceptEdits, or auto, all subagents inherit that mode and it cannot be overridden per subagent, meaning inheriting bypassPermissions grants subagents full autonomous system access.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://docs.claude.com/en/docs/agent-sdk/permissions",
+      "sourceTitle": "Configure permissions - Claude Agent SDK Docs",
+      "sourceQuote": "When the parent uses `bypassPermissions`, `acceptEdits`, or `auto`, all subagents inherit that mode and it cannot be overridden per subagent.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c67",
+      "text": "A streaming Messages response follows a fixed event lifecycle: a single message_start event (carrying a Message with empty content), then one or more content blocks each delimited by content_block_start, one or more content_block_delta, and content_block_stop, then one or more message_delta events, and finally a single message_stop event.",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://docs.anthropic.com/en/api/messages-streaming",
+      "sourceTitle": "Streaming messages - Claude API Docs",
+      "sourceQuote": "1. `message_start`: contains a `Message` object with empty `content`. 2. A series of content blocks, each of which has a `content_block_start`, one or more `content_block_delta` events, and a `content_block_stop` event... 3. One or more `message_delta` events... 4. A final `message_stop` event.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c68",
+      "text": "Each content block in a stream carries an index field that corresponds to its position in the final Message content array, allowing handlers to reassemble blocks in order.",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://docs.anthropic.com/en/api/messages-streaming",
+      "sourceTitle": "Streaming messages - Claude API Docs",
+      "sourceQuote": "Each content block has an `index` that corresponds to its index in the final Message `content` array.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c69",
+      "text": "The token counts in the usage field of message_delta events are cumulative, not per-delta increments, so consumers should treat the latest value as the running total rather than summing deltas.",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://docs.anthropic.com/en/api/messages-streaming",
+      "sourceTitle": "Streaming messages - Claude API Docs",
+      "sourceQuote": "The token counts shown in the `usage` field of the `message_delta` event are *cumulative*.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c70",
+      "text": "Per the versioning policy, new SSE event types may be added over time, so stream-consuming code must handle unknown event types gracefully rather than failing on them.",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://docs.anthropic.com/en/api/messages-streaming",
+      "sourceTitle": "Streaming messages - Claude API Docs",
+      "sourceQuote": "new event types may be added, and your code should handle unknown event types gracefully.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c71",
+      "text": "For tool_use blocks, content_block_delta events deliver the input field as partial JSON strings (input_json_delta) that must be accumulated and parsed only after content_block_stop; the final tool_use.input is always a complete object.",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://docs.anthropic.com/en/api/messages-streaming",
+      "sourceTitle": "Streaming messages - Claude API Docs",
+      "sourceQuote": "the deltas are _partial JSON strings_, whereas the final `tool_use.input` is always an _object_. You can accumulate the string deltas and parse the JSON once you receive a `content_block_stop` event",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c72",
+      "text": "For thinking content blocks, a signature_delta event is emitted just before content_block_stop, and this signature is used to verify the integrity of the thinking block.",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://docs.anthropic.com/en/api/messages-streaming",
+      "sourceTitle": "Streaming messages - Claude API Docs",
+      "sourceQuote": "For thinking content, a special `signature_delta` event is sent just before the `content_block_stop` event. This signature is used to verify the integrity of the thinking block.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c73",
+      "text": "When recovering an interrupted stream, tool_use and extended thinking content blocks cannot be partially recovered; recovery can only resume from the most recent text block.",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://docs.anthropic.com/en/api/messages-streaming",
+      "sourceTitle": "Streaming messages - Claude API Docs",
+      "sourceQuote": "Tool use and extended thinking blocks cannot be partially recovered. You can resume streaming from the most recent text block.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c74",
+      "text": "Telemetry export in the Claude Agent SDK is disabled by default; you must set CLAUDE_CODE_ENABLE_TELEMETRY=1 and choose at least one exporter to emit any data.",
+      "topic": "observability-tracing-logging",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/observability",
+      "sourceTitle": "Observability with OpenTelemetry - Claude Code Docs",
+      "sourceQuote": "Telemetry is off until you set `CLAUDE_CODE_ENABLE_TELEMETRY=1` and choose at least one exporter.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c75",
+      "text": "Trace export requires both OTEL_TRACES_EXPORTER and CLAUDE_CODE_ENHANCED_TELEMETRY_BETA=1, whereas metrics and log events do not require the beta flag.",
+      "topic": "observability-tracing-logging",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/observability",
+      "sourceTitle": "Observability with OpenTelemetry - Claude Code Docs",
+      "sourceQuote": "Traces     | Spans for each interaction, model request, tool call, and hook (beta)       | `OTEL_TRACES_EXPORTER` plus `CLAUDE_CODE_ENHANCED_TELEMETRY_BETA=1`",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c76",
+      "text": "By default the Claude Code CLI exports metrics every 60 seconds and exports traces and logs every 5 seconds; these can be lowered (e.g. to 1000 ms) to reduce data loss on short-lived calls.",
+      "topic": "observability-tracing-logging",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/observability",
+      "sourceTitle": "Observability with OpenTelemetry - Claude Code Docs",
+      "sourceQuote": "By default, metrics export every 60 seconds and traces and logs export every 5 seconds.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c79",
+      "text": "Agent content (what the agent reads and writes) is not recorded in telemetry by default; capturing prompt text, tool arguments, tool bodies, or raw API bodies requires opt-in variables such as OTEL_LOG_USER_PROMPTS=1, OTEL_LOG_TOOL_DETAILS=1, OTEL_LOG_TOOL_CONTENT=1 (truncated at 60 KB), or OTEL_LOG_RAW_API_BODIES.",
+      "topic": "observability-tracing-logging",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/observability",
+      "sourceTitle": "Observability with OpenTelemetry - Claude Code Docs",
+      "sourceQuote": "The content your agent reads and writes is not recorded by default. These opt-in variables add content to the exported data",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c80",
+      "text": "With frontier models, a 0% pass rate across many trials (0% pass@100) is most often a signal of a broken task or misconfigured grader rather than an incapable agent, and should prompt re-checking the task specification and graders.",
+      "topic": "evaluation-and-testing",
+      "sourceUrl": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "sourceTitle": "Demystifying evals for AI agents — Anthropic Engineering",
+      "sourceQuote": "With frontier models, a 0% pass rate across many trials (i.e. 0% pass@100) is most often a signal of a broken task, not an incapable agent, and a sign to double-check your task specification and graders.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c81",
+      "text": "Each eval trial should be isolated by starting from a clean environment, because unnecessary shared state (leftover files, cached data, resource exhaustion) causes correlated failures from infrastructure flakiness rather than agent performance and can artificially inflate performance.",
+      "topic": "evaluation-and-testing",
+      "sourceUrl": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "sourceTitle": "Demystifying evals for AI agents — Anthropic Engineering",
+      "sourceQuote": "Each trial should be \"isolated\" by starting from a clean environment. Unnecessary shared state between runs (leftover files, cached data, resource exhaustion) can cause correlated failures due to infrastructure flakiness rather than agent performance. Shared state can also artificially inflate performance.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c82",
+      "text": "Evals should grade what the agent produced (the outcome) rather than enforcing a specific sequence of tool calls, because checking the exact path the agent took produces overly brittle tests that punish valid approaches eval designers didn't anticipate.",
+      "topic": "evaluation-and-testing",
+      "sourceUrl": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "sourceTitle": "Demystifying evals for AI agents — Anthropic Engineering",
+      "sourceQuote": "We've found this approach too rigid and results in overly brittle tests, as agents regularly find valid approaches that eval designers didn't anticipate. So as not to unnecessarily punish creativity, it's often better to grade what the agent produced, not the path it took.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c83",
+      "text": "An effective initial eval dataset can start with just 20-50 simple tasks drawn from real failures, because the large effect size of changes in early agent development means small sample sizes are sufficient to detect them.",
+      "topic": "evaluation-and-testing",
+      "sourceUrl": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "sourceTitle": "Demystifying evals for AI agents — Anthropic Engineering",
+      "sourceQuote": "In reality, 20-50 simple tasks drawn from real failures is a great start. After all, in early agent development, each change to the system often has a clear, noticeable impact, and this large effect size means small sample sizes suffice.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c84",
+      "text": "Capability (quality) evals should start at a low pass rate to give teams a hill to climb, while regression evals should maintain a nearly 100% pass rate so that any decline signals something is broken.",
+      "topic": "evaluation-and-testing",
+      "sourceUrl": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "sourceTitle": "Demystifying evals for AI agents — Anthropic Engineering",
+      "sourceQuote": "Capability or \"quality\" evals ask, \"What can this agent do well?\" They should start at a low pass rate... Regression evals ask, \"Does the agent still handle all the tasks it used to?\" and should have a nearly 100% pass rate.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c85",
+      "text": "pass^k measures the probability that all k trials of a task succeed and should be used for customer-facing agents requiring consistency; for example a 75% per-trial success rate yields only (0.75)^3 ≈ 42% probability of passing all three of three trials.",
+      "topic": "evaluation-and-testing",
+      "sourceUrl": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "sourceTitle": "Demystifying evals for AI agents — Anthropic Engineering",
+      "sourceQuote": "pass^k measures the probability that all k trials succeed... If your agent has a 75% per-trial success rate and you run 3 trials, the probability of passing all three is (0.75)³ ≈ 42%. This metric especially matters for customer-facing agents where users expect reliable behavior every time.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c86",
+      "text": "LLM-as-judge graders should be closely calibrated against human experts, given a way to return \"Unknown\" to avoid hallucinations, and use isolated per-dimension judges with structured rubrics rather than one judge grading all dimensions.",
+      "topic": "evaluation-and-testing",
+      "sourceUrl": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "sourceTitle": "Demystifying evals for AI agents — Anthropic Engineering",
+      "sourceQuote": "LLM-as-judge graders should be closely calibrated with human experts... To avoid hallucinations, give the LLM a way out, like providing an instruction to return \"Unknown\" when it doesn't have enough information... grade each dimension with an isolated LLM-as-judge rather than using one to grade all dimensions.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c87",
+      "text": "The Claude Agent SDK Python package requires Python 3.10 or later; older interpreters fail to install with a 'No matching distribution found' error.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/overview",
+      "sourceTitle": "Agent SDK overview - Claude API Docs",
+      "sourceQuote": "The Python package requires Python 3.10 or later. If pip reports `No matching distribution found for claude-agent-sdk`, your interpreter is older than 3.10.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c88",
+      "text": "The TypeScript Agent SDK bundles a native Claude Code binary for the platform as an optional dependency, so Claude Code does not need to be installed separately.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/overview",
+      "sourceTitle": "Agent SDK overview - Claude API Docs",
+      "sourceQuote": "The TypeScript SDK bundles a native Claude Code binary for your platform as an optional dependency, so you don't need to install Claude Code separately.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c89",
+      "text": "Subagents are invoked via the Agent tool, so 'Agent' must be included in allowedTools to auto-approve subagent invocations.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/overview",
+      "sourceTitle": "Agent SDK overview - Claude API Docs",
+      "sourceQuote": "Subagents are invoked via the Agent tool, so include `Agent` in `allowedTools` to auto-approve those invocations",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c90",
+      "text": "Messages originating from within a subagent's context include a parent_tool_use_id field that maps each message to its subagent execution.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/overview",
+      "sourceTitle": "Agent SDK overview - Claude API Docs",
+      "sourceQuote": "Messages from within a subagent's context include a `parent_tool_use_id` field, letting you track which messages belong to which subagent execution.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c91",
+      "text": "By default the SDK loads filesystem-based Claude Code configuration from `.claude/` in the working directory and `~/.claude/`, and which sources load can be restricted via setting_sources (Python) / settingSources (TypeScript).",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/overview",
+      "sourceTitle": "Agent SDK overview - Claude API Docs",
+      "sourceQuote": "With default options the SDK loads these from `.claude/` in your working directory and `~/.claude/`. To restrict which sources load, set `setting_sources` (Python) or `settingSources` (TypeScript) in your options.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c92",
+      "text": "Anthropic does not allow third-party developers to offer claude.ai login or rate limits for products built on the Claude Agent SDK unless previously approved; API key authentication must be used instead.",
+      "topic": "claude-agent-sdk-specifics",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/overview",
+      "sourceTitle": "Agent SDK overview - Claude API Docs",
+      "sourceQuote": "Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Please use the API key authentication methods described in this document instead.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c93",
+      "text": "The Claude Agent SDK structures effective agents around a repeating loop of three phases: gather context, take action, and verify work, iterating until task completion.",
+      "topic": "agent-loop-architecture",
+      "sourceUrl": "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+      "sourceTitle": "Building agents with the Claude Agent SDK - Anthropic Engineering",
+      "sourceQuote": "Effective agents operate in a continuous cycle: 1. Gather Context ... 2. Take Action ... 3. Verify Work ... 4. Repeat - Iterate until task completion",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c94",
+      "text": "The SDK recommends agentic search using bash commands like grep and tail to retrieve large files, and treats semantic search as a secondary approach that is faster but less transparent.",
+      "topic": "context-gathering",
+      "sourceUrl": "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+      "sourceTitle": "Building agents with the Claude Agent SDK - Anthropic Engineering",
+      "sourceQuote": "Use bash commands like `grep` and `tail` to intelligently retrieve large files. ... Semantic Search: Faster but less transparent than agentic search; useful as a secondary approach when performance demands it.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c95",
+      "text": "Subagents enable parallelization and context isolation by working simultaneously and returning only relevant excerpts rather than full context.",
+      "topic": "context-management",
+      "sourceUrl": "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+      "sourceTitle": "Building agents with the Claude Agent SDK - Anthropic Engineering",
+      "sourceQuote": "Subagents: Enable parallelization and context isolation. Multiple subagents work simultaneously, returning only relevant excerpts rather than full context.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c96",
+      "text": "Compaction automatically summarizes conversation history as context limits approach, preventing agents from running out of context during long operations.",
+      "topic": "context-management",
+      "sourceUrl": "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+      "sourceTitle": "Building agents with the Claude Agent SDK - Anthropic Engineering",
+      "sourceQuote": "Compaction: Automatically summarizes conversation history as context limits approach, preventing agents from running out of context during long operations.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c97",
+      "text": "The SDK describes three approaches to verifying agent work: rules-based feedback (e.g. code linting), visual feedback (screenshotting rendered output back to the model), and LLM-as-judge for fuzzy criteria.",
+      "topic": "verification",
+      "sourceUrl": "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+      "sourceTitle": "Building agents with the Claude Agent SDK - Anthropic Engineering",
+      "sourceQuote": "Verifying Work: Three Approaches ... Rules-Based Feedback ... Visual Feedback: For UI/visual tasks, screenshot rendered output and provide it back to the model for verification ... LLM as Judge: Have another language model evaluate agent outputs against fuzzy criteria.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c98",
+      "text": "Tools should be designed to represent the most frequent actions an agent should take, since tools are displayed prominently in Claude's context as the primary execution building blocks.",
+      "topic": "tool-design",
+      "sourceUrl": "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+      "sourceTitle": "Building agents with the Claude Agent SDK - Anthropic Engineering",
+      "sourceQuote": "Tools: Primary execution building blocks displayed prominently in Claude's context. Design tools to maximize efficiency by making them represent the most frequent actions your agent should take.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c99",
+      "text": "The agent loop runs turns (Claude output with tool calls -> SDK executes tools -> results feed back automatically) without yielding control to the caller, and continues until Claude produces output with no tool calls, at which point the loop ends and the final result is delivered.",
+      "topic": "core-agentic-loop",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+      "sourceTitle": "How the agent loop works — Claude Code Docs",
+      "sourceQuote": "Turns continue until Claude produces output with no tool calls, at which point the loop ends and the final result is delivered.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c100",
+      "text": "The max_turns / maxTurns option caps the loop and counts tool-use turns only; max_budget_usd / maxBudgetUsd caps the loop based on a spend threshold, and setting a budget is recommended as a default for production agents.",
+      "topic": "loop-control-budget",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+      "sourceTitle": "How the agent loop works — Claude Code Docs",
+      "sourceQuote": "You can cap the loop with `max_turns` / `maxTurns`, which counts tool-use turns only. ... Setting a budget is a good default for production agents.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c101",
+      "text": "Read-only tools (Read, Glob, Grep, and MCP tools marked read-only) can run concurrently within a turn, while state-modifying tools (Edit, Write, Bash) run sequentially to avoid conflicts; custom tools default to sequential and require setting readOnlyHint in annotations to run in parallel.",
+      "topic": "parallel-tool-execution",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+      "sourceTitle": "How the agent loop works — Claude Code Docs",
+      "sourceQuote": "Read-only tools (like `Read`, `Glob`, `Grep`, and MCP tools marked as read-only) can run concurrently. Tools that modify state (like `Edit`, `Write`, and `Bash`) run sequentially to avoid conflicts. Custom tools default to sequential execution. To enable parallel execution for a custom tool, set `readOnlyHint` in its annotations.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c102",
+      "text": "Because compaction replaces older messages with a summary that may drop early instructions, persistent rules should be placed in CLAUDE.md (re-injected on every request) rather than in the initial prompt.",
+      "topic": "context-compaction",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+      "sourceTitle": "How the agent loop works — Claude Code Docs",
+      "sourceQuote": "Persistent rules belong in CLAUDE.md (loaded via [`settingSources`](/en/agent-sdk/claude-code-features)) rather than in the initial prompt, because CLAUDE.md content is re-injected on every request.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c103",
+      "text": "Using subagents for subtasks keeps the main context lean because each subagent starts with a fresh conversation (no parent message history) and only its final response returns to the parent as a tool result, so the main agent's context grows by that summary rather than the full subtask transcript.",
+      "topic": "context-efficiency",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+      "sourceTitle": "How the agent loop works — Claude Code Docs",
+      "sourceQuote": "Each subagent starts with a fresh conversation (no prior message history... It does not see the parent's turns, and only its final response returns to the parent as a tool result. The main agent's context grows by that summary, not by the full subtask transcript.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c104",
+      "text": "The ResultMessage result field (final text output) is only present on the success subtype, so callers must check the subtype before reading it; all subtypes (including error subtypes) still carry total_cost_usd, usage, num_turns, and session_id.",
+      "topic": "result-handling",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+      "sourceTitle": "How the agent loop works — Claude Code Docs",
+      "sourceQuote": "The `result` field (the final text output) is only present on the `success` variant, so always check the subtype before reading it. All result subtypes carry `total_cost_usd`, `usage`, `num_turns`, and `session_id`",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c105",
+      "text": "Hooks run in the application process rather than inside the agent's context window, so they do not consume context, and a PreToolUse hook that rejects a tool call prevents it from executing (Claude receives the rejection message instead).",
+      "topic": "hooks",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+      "sourceTitle": "How the agent loop works — Claude Code Docs",
+      "sourceQuote": "Hooks run in your application process, not inside the agent's context window, so they don't consume context. Hooks can also short-circuit the loop: a `PreToolUse` hook that rejects a tool call prevents it from executing, and Claude receives the rejection message instead.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c106",
+      "text": "Context editing automatically removes outdated tool calls and results from the context window as token limits approach, allowing agents to run longer while preserving conversation flow.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://www.anthropic.com/news/context-management",
+      "sourceTitle": "Managing Context on the Claude Developer Platform — Anthropic",
+      "sourceQuote": "This feature automatically removes outdated tool calls and results from the context window as token limits approach. By clearing stale data while preserving conversation flow, agents can operate longer while maintaining performance.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c107",
+      "text": "The memory tool is a file-based system that lets Claude create, read, update, and delete files in a dedicated memory directory to store and retrieve information beyond the context window across sessions.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://www.anthropic.com/news/context-management",
+      "sourceTitle": "Managing Context on the Claude Developer Platform — Anthropic",
+      "sourceQuote": "The tool enables agents to create, read, update, and delete files in a dedicated memory directory.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c108",
+      "text": "Combining the memory tool with context editing produced a 39% improvement over baseline on agentic search evaluations.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://www.anthropic.com/news/context-management",
+      "sourceTitle": "Managing Context on the Claude Developer Platform — Anthropic",
+      "sourceQuote": "Combined memory tool plus context editing showed \"39% improvement over baseline\" on agentic search evaluations",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c109",
+      "text": "Context editing alone delivered a 29% improvement over baseline on agentic search evaluations.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://www.anthropic.com/news/context-management",
+      "sourceTitle": "Managing Context on the Claude Developer Platform — Anthropic",
+      "sourceQuote": "Context editing alone delivered \"29% improvement\"",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c110",
+      "text": "In a 100-turn web search test, context editing reduced token consumption by 84% and enabled agents to complete workflows that would otherwise fail.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://www.anthropic.com/news/context-management",
+      "sourceTitle": "Managing Context on the Claude Developer Platform — Anthropic",
+      "sourceQuote": "In a 100-turn web search test, context editing enabled agents to complete workflows that would otherwise fail while reducing \"token consumption by 84%\"",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c111",
+      "text": "Context editing and the memory tool launched in public beta on September 29, 2025, available on the Claude Developer Platform, Amazon Bedrock, and Google Cloud's Vertex AI.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://www.anthropic.com/news/context-management",
+      "sourceTitle": "Managing Context on the Claude Developer Platform — Anthropic",
+      "sourceQuote": "These capabilities are available in public beta on the Claude Developer Platform, Amazon Bedrock, and Google Cloud's Vertex AI.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c112",
+      "text": "Agent harnesses should share full context and complete agent traces between agents/subagents, not just individual messages or isolated task descriptions; sharing only task summaries causes miscommunications.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://cognition.ai/blog/dont-build-multi-agents",
+      "sourceTitle": "Don't Build Multi-Agents | Cognition",
+      "sourceQuote": "Share context, and share full agent traces, not just individual messages",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c113",
+      "text": "Because every action an agent takes carries implicit decisions, parallel subagents acting without visibility into each other's choices make conflicting decisions that produce inconsistent or bad results.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://cognition.ai/blog/dont-build-multi-agents",
+      "sourceTitle": "Don't Build Multi-Agents | Cognition",
+      "sourceQuote": "Actions carry implicit decisions, and conflicting decisions carry bad results",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c114",
+      "text": "The most reliable production agent design is a single-threaded linear agent that maintains continuous context across sequential steps, rather than parallel multi-agent architectures, because it prevents decision conflicts entirely.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://cognition.ai/blog/dont-build-multi-agents",
+      "sourceTitle": "Don't Build Multi-Agents | Cognition",
+      "sourceQuote": "The simplest reliable design maintains continuous context through one agent executing sequential steps. This prevents decision conflicts entirely.",
+      "refutes": 1,
+      "survives": true
+    },
+    {
+      "id": "c115",
+      "text": "For long-running tasks that overflow the context window, introduce a dedicated LLM that compresses the action history into key details, events, and decisions, though the author warns this technique is hard to get right.",
+      "topic": "context-management",
+      "sourceUrl": "https://cognition.ai/blog/dont-build-multi-agents",
+      "sourceTitle": "Don't Build Multi-Agents | Cognition",
+      "sourceQuote": "introduce a specialized LLM compressing action history into key details, events, and decisions—though the author notes this \"is hard to get right.\"",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c116",
+      "text": "Claude Code deliberately avoids parallel subagents, restricting subtasks to sequential, investigation-only work rather than parallel decision-making subagents.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://cognition.ai/blog/dont-build-multi-agents",
+      "sourceTitle": "Don't Build Multi-Agents | Cognition",
+      "sourceQuote": "Claude Code: Deliberately avoids parallel subagents; uses sequential subtasks for investigation-only work",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c117",
+      "text": "Reliable edit-apply systems unify decision-making and code application into a single action; earlier unreliable designs that separated the decision-making LLM from the apply step caused errors.",
+      "topic": "agent-design",
+      "sourceUrl": "https://cognition.ai/blog/dont-build-multi-agents",
+      "sourceTitle": "Don't Build Multi-Agents | Cognition",
+      "sourceQuote": "Earlier unreliable systems separated decision-making from code application; modern approaches unify these in single actions",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c118",
+      "text": "A multi-agent system using Claude Opus 4 as lead agent with Claude Sonnet 4 subagents outperformed a single-agent Claude Opus 4 by 90.2% on Anthropic's internal research evaluation.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "sourceTitle": "How we built our multi-agent research system | Anthropic",
+      "sourceQuote": "a multi-agent system with Claude Opus 4 as the lead agent and Claude Sonnet 4 subagents outperformed single-agent Claude Opus 4 by 90.2%",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c119",
+      "text": "Multi-agent systems consume approximately 15x more tokens than ordinary chat interactions, while single agents use about 4x more tokens than chat.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "sourceTitle": "How we built our multi-agent research system | Anthropic",
+      "sourceQuote": "agents typically use about 4× more tokens than standard chat interactions, and multi-agent systems consume approximately 15× more tokens than chats",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c120",
+      "text": "Effort should be scaled to query complexity with explicit rules: simple fact-finding uses 1 agent with 3-10 tool calls, comparisons use 2-4 subagents with 10-15 calls each, and complex research uses 10+ subagents.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "sourceTitle": "How we built our multi-agent research system | Anthropic",
+      "sourceQuote": "simple fact-finding needs 1 agent with 3-10 tool calls; comparisons need 2-4 subagents with 10-15 calls each; complex research uses 10+ subagents",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c121",
+      "text": "A tool-testing agent that rewrote tool descriptions based on repeated testing produced a 40% decrease in task completion time for agents using those tools.",
+      "topic": "tool-design",
+      "sourceUrl": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "sourceTitle": "How we built our multi-agent research system | Anthropic",
+      "sourceQuote": "resulting in a 40% decrease in task completion time",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c122",
+      "text": "Parallelizing subagent spin-up (3-5 simultaneously) and parallel tool calls within subagents (3+ tools at once) cut research time by up to 90% for complex queries.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "sourceTitle": "How we built our multi-agent research system | Anthropic",
+      "sourceQuote": "spinning up 3-5 subagents simultaneously rather than serially; (2) subagents using 3+ tools in parallel. This \"cut research time by up to 90% for complex queries\"",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c123",
+      "text": "Agent evaluation should begin with a small sample of about 20 representative queries before building large-scale evals, since early prompt tweaks can boost success rates dramatically (e.g., from 30% to 80%).",
+      "topic": "evaluation",
+      "sourceUrl": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "sourceTitle": "How we built our multi-agent research system | Anthropic",
+      "sourceQuote": "Start with ~20 representative queries before building large-scale evaluations. Early development shows dramatic improvements where \"prompt tweaks might boost success rates from 30% to 80%.\"",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c124",
+      "text": "By default, the Claude Code Bash sandbox grants write access only to the current working directory (and its subdirectories) plus the session temp directory that $TMPDIR points to; all other locations are read-only unless explicitly allowed.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://code.claude.com/docs/en/sandboxing",
+      "sourceTitle": "Configure the sandboxed Bash tool - Claude Code Docs",
+      "sourceQuote": "Default write behavior: read and write access to the current working directory and its subdirectories, plus the session temp directory that $TMPDIR points to",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c125",
+      "text": "By default the sandbox grants read access to the entire computer (except certain denied directories), which still allows reading credential files such as ~/.aws/credentials and ~/.ssh/; blocking them requires adding them to denyRead.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://code.claude.com/docs/en/sandboxing",
+      "sourceTitle": "Configure the sandboxed Bash tool - Claude Code Docs",
+      "sourceQuote": "read access to the entire computer, except certain denied directories. Note that this default still allows reading credential files such as ~/.aws/credentials and ~/.ssh/. Add them to denyRead to block them.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c126",
+      "text": "No network domains are pre-allowed in the sandbox; the first time a command needs a new domain, Claude Code prompts for approval, and domains can be pre-allowed via the allowedDomains setting.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://code.claude.com/docs/en/sandboxing",
+      "sourceTitle": "Configure the sandboxed Bash tool - Claude Code Docs",
+      "sourceQuote": "no domains are pre-allowed. The first time a command needs a new domain, Claude Code prompts for approval. Pre-allow domains with allowedDomains to avoid the prompt.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c127",
+      "text": "The sandbox's built-in network proxy enforces the domain allowlist based on the client-supplied hostname and does not terminate or inspect TLS traffic, meaning broad allowed domains (e.g. github.com) can enable data exfiltration via domain fronting.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://code.claude.com/docs/en/sandboxing",
+      "sourceTitle": "Configure the sandboxed Bash tool - Claude Code Docs",
+      "sourceQuote": "The built-in proxy enforces the allowlist based on the requested hostname and does not terminate or inspect TLS traffic.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c128",
+      "text": "The sandbox enforces isolation using OS security primitives: Seatbelt on macOS, and bubblewrap on Linux and WSL2; native Windows and WSL1 are not supported (WSL1 lacks the kernel features bubblewrap requires).",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://code.claude.com/docs/en/sandboxing",
+      "sourceTitle": "Configure the sandboxed Bash tool - Claude Code Docs",
+      "sourceQuote": "macOS: uses Seatbelt for sandbox enforcement * Linux: uses bubblewrap for isolation * WSL2: uses bubblewrap, same as Linux",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c129",
+      "text": "By default, if the sandbox cannot start (missing dependencies or unsupported platform), Claude Code shows a warning and runs commands without sandboxing; setting sandbox.failIfUnavailable to true makes this a hard failure that blocks Claude Code from starting.",
+      "topic": "permissions-and-sandboxing",
+      "sourceUrl": "https://code.claude.com/docs/en/sandboxing",
+      "sourceTitle": "Configure the sandboxed Bash tool - Claude Code Docs",
+      "sourceQuote": "By default, if the sandbox cannot start because dependencies are missing or the platform is unsupported, Claude Code shows a warning and runs commands without sandboxing. To make this a hard failure instead, set sandbox.failIfUnavailable to true.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c130",
+      "text": "In Anthropic's four-component agent architecture, the harness is the layer that holds the instructions and guardrails governing the agent's behavior, distinct from the model, the tools, and the environment.",
+      "topic": "safety-guardrails",
+      "sourceUrl": "https://www.anthropic.com/research/trustworthy-agents",
+      "sourceTitle": "Trustworthy Agents in Practice — Anthropic",
+      "sourceQuote": "A harness: Includes instructions and guardrails governing behavior",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c131",
+      "text": "Agent harnesses should let users configure per-tool permissions across three states: always allow, needs approval, or block.",
+      "topic": "safety-guardrails",
+      "sourceUrl": "https://www.anthropic.com/research/trustworthy-agents",
+      "sourceTitle": "Trustworthy Agents in Practice — Anthropic",
+      "sourceQuote": "Users can enable/disable tools and configure permissions (always allow, needs approval, or block).",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c132",
+      "text": "Claude Code's Plan Mode has agents display their full action plan upfront for user review and approval before any execution.",
+      "topic": "human-in-the-loop",
+      "sourceUrl": "https://www.anthropic.com/research/trustworthy-agents",
+      "sourceTitle": "Trustworthy Agents in Practice — Anthropic",
+      "sourceQuote": "Claude Code introduced \"Plan Mode,\" where agents display full action plans upfront for user review and approval before execution.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c133",
+      "text": "Agents roughly double their check-in (clarification) rate on complex tasks compared to simple ones.",
+      "topic": "human-in-the-loop",
+      "sourceUrl": "https://www.anthropic.com/research/trustworthy-agents",
+      "sourceTitle": "Trustworthy Agents in Practice — Anthropic",
+      "sourceQuote": "Research shows agents roughly double their check-in rate on complex tasks compared to simple ones.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c134",
+      "text": "Defense against prompt injection should be layered, combining model training to recognize injection patterns, production traffic monitoring, and external red-team testing.",
+      "topic": "prompt-injection-defense",
+      "sourceUrl": "https://www.anthropic.com/research/trustworthy-agents",
+      "sourceTitle": "Trustworthy Agents in Practice — Anthropic",
+      "sourceQuote": "Multiple layers protect against prompt injection attacks: Model training to recognize injection patterns, Production traffic monitoring, External red-team testing",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c135",
+      "text": "Anthropic's agent safety approach rests on five pillars: keeping humans in control, aligning with human values, securing agents' interactions, maintaining transparency, and protecting privacy.",
+      "topic": "safety-guardrails",
+      "sourceUrl": "https://www.anthropic.com/research/trustworthy-agents",
+      "sourceTitle": "Trustworthy Agents in Practice — Anthropic",
+      "sourceQuote": "Anthropic's safety approach rests on five pillars: Keeping humans in control, Aligning with human values, Securing agents' interactions, Maintaining transparency, Protecting privacy",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c136",
+      "text": "The memory tool is a client-side tool operating on a `/memories` directory; for security, all memory operations should be restricted to that directory, and implementations MUST validate paths to block directory traversal (reject `../`, `..\\`, URL-encoded `%2e%2e%2f`, and verify resolved paths stay within the memory directory).",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/memory-tool",
+      "sourceTitle": "Memory tool — Claude Docs",
+      "sourceQuote": "Malicious path inputs could attempt to access files outside the `/memories` directory. Your implementation **MUST** validate all paths to prevent directory traversal attacks.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c137",
+      "text": "When the memory tool is enabled, an instruction is automatically injected into the system prompt directing Claude to always view its memory directory before doing anything else, because the context window might be reset at any moment and unrecorded progress would be lost.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/memory-tool",
+      "sourceTitle": "Memory tool — Claude Docs",
+      "sourceQuote": "IMPORTANT: ALWAYS VIEW YOUR MEMORY DIRECTORY BEFORE DOING ANYTHING ELSE.\nMEMORY PROTOCOL:\n1. Use the `view` command of your `memory` tool to check for earlier progress.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c138",
+      "text": "The memory tool is enabled with type identifier `memory_20250818` and name `memory`, and client implementations must handle six commands: view, create, str_replace, insert, delete, and rename.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/memory-tool",
+      "sourceTitle": "Memory tool — Claude Docs",
+      "sourceQuote": "tools=[{\"type\": \"memory_20250818\", \"name\": \"memory\"}]",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c139",
+      "text": "For long-running agentic workflows, pairing the memory tool with compaction is recommended: compaction performs server-side summarization when context approaches the window limit, while memory persists important information across compaction boundaries so nothing critical is lost in the summary.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/memory-tool",
+      "sourceTitle": "Memory tool — Claude Docs",
+      "sourceQuote": "compaction keeps the active context manageable without client-side bookkeeping, and memory persists important information across compaction boundaries so that nothing critical is lost in the summary.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c140",
+      "text": "In the multi-session software development pattern, agents should work on one feature at a time and only mark a feature complete after end-to-end verification confirms it works, not just after the code is written.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/memory-tool",
+      "sourceTitle": "Memory tool — Claude Docs",
+      "sourceQuote": "Work on one feature at a time. Only mark a feature complete after end-to-end verification confirms it works, not just after the code is written.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c141",
+      "text": "Memory store implementations should track file sizes to prevent files growing too large, cap the maximum number of characters a read command returns (letting Claude paginate), and the view command itself errors on files exceeding 999,999 lines.",
+      "topic": "context-window-and-memory",
+      "sourceUrl": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/memory-tool",
+      "sourceTitle": "Memory tool — Claude Docs",
+      "sourceQuote": "Consider tracking memory file sizes and preventing files from growing too large. Consider adding a maximum number of characters the memory read command can return, and let Claude paginate through contents.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c142",
+      "text": "In a system prompt, each distinct type of content (instructions, context, examples, variable inputs) should be wrapped in its own descriptive XML tag (e.g. <instructions>, <context>, <input>) to reduce misinterpretation when a prompt mixes content types.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags",
+      "sourceTitle": "Use XML tags to structure your prompts — Claude Docs",
+      "sourceQuote": "Wrapping each type of content in its own tag (e.g. `<instructions>`, `<context>`, `<input>`) reduces misinterpretation.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c143",
+      "text": "For inputs of 20k+ tokens, placing long documents/data near the top of the prompt (above the query, instructions, and examples) improves performance, and placing the query at the end can improve response quality by up to 30% in tests on complex multi-document inputs.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags",
+      "sourceTitle": "Use XML tags to structure your prompts — Claude Docs",
+      "sourceQuote": "Queries at the end can improve response quality by up to 30% in tests, especially with complex, multi-document inputs.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c144",
+      "text": "On Claude Opus 4.5 and 4.6, aggressive system-prompt language such as 'CRITICAL: You MUST use this tool when...' should be replaced with normal phrasing like 'Use this tool when...' because these models are more responsive to the system prompt and otherwise overtrigger tools/skills.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags",
+      "sourceTitle": "Use XML tags to structure your prompts — Claude Docs",
+      "sourceQuote": "Where you might have said \"CRITICAL: You MUST use this tool when...\", you can use more normal prompting like \"Use this tool when...\".",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c145",
+      "text": "Starting with Claude 4.6 models (and Claude Mythos Preview), prefilled responses on the last assistant turn are no longer supported, and requests containing a prefilled assistant message to these models return a 400 error.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags",
+      "sourceTitle": "Use XML tags to structure your prompts — Claude Docs",
+      "sourceQuote": "prefilled responses on the last assistant turn are no longer supported. Requests with prefilled assistant messages to these models return a 400 error.",
+      "refutes": 1,
+      "survives": true
+    },
+    {
+      "id": "c146",
+      "text": "In an agent harness that compacts context or saves context to external files, the system prompt should tell Claude its context will be automatically compacted so it does not stop tasks early due to token-budget concerns, and instruct it to save progress and state to memory as it approaches the limit.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags",
+      "sourceTitle": "Use XML tags to structure your prompts — Claude Docs",
+      "sourceQuote": "Your context window will be automatically compacted as it approaches its limit, allowing you to continue working indefinitely from where you left off. Therefore, do not stop tasks early due to token budget concerns.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c147",
+      "text": "Few-shot/multishot examples should be wrapped in <example> tags (multiple in <examples> tags) and number 3-5 for best results.",
+      "topic": "system-prompt-and-instructions",
+      "sourceUrl": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags",
+      "sourceTitle": "Use XML tags to structure your prompts — Claude Docs",
+      "sourceQuote": "Include 3–5 examples for best results.",
+      "refutes": 1,
+      "survives": true
+    },
+    {
+      "id": "c148",
+      "text": "Each subagent runs in its own fresh conversation where intermediate tool calls and results stay inside the subagent; only its final message returns to the parent, isolating the parent's context.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/subagents",
+      "sourceTitle": "Subagents in the SDK - Claude API Docs",
+      "sourceQuote": "Each subagent runs in its own fresh conversation. Intermediate tool calls and results stay inside the subagent; only its final message returns to the parent.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c149",
+      "text": "The only channel from parent to subagent is the Agent tool's prompt string; subagents do not receive the parent's conversation history, tool results, or system prompt, so any needed file paths, error messages, or decisions must be included directly in that prompt.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/subagents",
+      "sourceTitle": "Subagents in the SDK - Claude API Docs",
+      "sourceQuote": "The only channel from parent to subagent is the Agent tool's prompt string, so include any file paths, error messages, or decisions the subagent needs directly in that prompt.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c150",
+      "text": "To auto-approve subagent invocations without a permission prompt, the Agent tool must be included in allowedTools; otherwise Agent invocations fall through to the canUseTool callback or, in dontAsk mode, are denied.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/subagents",
+      "sourceTitle": "Subagents in the SDK - Claude API Docs",
+      "sourceQuote": "include Agent in allowedTools to auto-approve subagent calls. Without it, Agent invocations fall through to your `canUseTool` callback or, in `dontAsk` mode, are denied",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c151",
+      "text": "A subagent's tool access is restricted via the tools field: omitting it makes the agent inherit all available tools, while specifying tools (e.g. Read, Grep, Glob for read-only analysis) limits it to only those tools, reducing risk of unintended actions.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/subagents",
+      "sourceTitle": "Subagents in the SDK - Claude API Docs",
+      "sourceQuote": "Omit the field: agent inherits all available tools (default)\n* **Specify tools**: agent can only use listed tools",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c152",
+      "text": "Running multiple subagents concurrently means independent subtasks finish in the time of the slowest one rather than the sum of all of them.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/subagents",
+      "sourceTitle": "Subagents in the SDK - Claude API Docs",
+      "sourceQuote": "Multiple subagents can run concurrently, so independent subtasks finish in the time of the slowest one rather than the sum of all of them.",
+      "refutes": 0,
+      "survives": true
+    },
+    {
+      "id": "c153",
+      "text": "Subagents work well for a few delegated tasks per turn, but for runs coordinating dozens to hundreds of agents the Workflow tool should be used (available in TypeScript Agent SDK v0.3.149+), which moves orchestration into a script executed outside the conversation context.",
+      "topic": "subagents-and-orchestration",
+      "sourceUrl": "https://platform.claude.com/docs/en/agent-sdk/subagents",
+      "sourceTitle": "Subagents in the SDK - Claude API Docs",
+      "sourceQuote": "Subagents work well for a few delegated tasks per turn. For runs that coordinate dozens to hundreds of agents, use the `Workflow` tool, which moves the orchestration into a script the runtime executes outside the conversation context.",
+      "refutes": 1,
+      "survives": true
+    }
+  ],
+  "dropped": [
+    {
+      "id": "c20",
+      "text": "Claude Code's architecture exposes a hook pipeline with 27 distinct event types plus per-turn streaming events, enabling real-time monitoring and audit-trail instrumentation of agent decisions.",
+      "topic": "streaming-and-lifecycle-hooks",
+      "sourceUrl": "https://github.com/ai-boost/awesome-harness-engineering",
+      "sourceTitle": "awesome-harness-engineering — GitHub",
+      "sourceQuote": "27-event-type hook pipeline (from Claude Code architecture analysis) - Per-turn streaming events for real-time monitoring",
+      "refutes": 3,
+      "survives": false
+    },
+    {
+      "id": "c21",
+      "text": "Using symbol-based navigation instead of reading whole files reduces an agent's active token usage by 77%.",
+      "topic": "project-file-structure",
+      "sourceUrl": "https://github.com/ai-boost/awesome-harness-engineering",
+      "sourceTitle": "awesome-harness-engineering — GitHub",
+      "sourceQuote": "Symbol-based navigation instead of file reading (reduces active tokens by 77%)",
+      "refutes": 3,
+      "survives": false
+    },
+    {
+      "id": "c77",
+      "text": "When running through the Agent SDK you must not set the OpenTelemetry 'console' exporter, because the SDK uses standard output as its message channel and console telemetry would corrupt it.",
+      "topic": "observability-tracing-logging",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/observability",
+      "sourceTitle": "Observability with OpenTelemetry - Claude Code Docs",
+      "sourceQuote": "The `console` exporter writes telemetry to standard output, which the SDK uses as its message channel. Do not set `console` as an exporter value when running through the SDK.",
+      "refutes": 2,
+      "survives": false
+    },
+    {
+      "id": "c78",
+      "text": "The SDK automatically propagates W3C trace context by injecting TRACEPARENT and TRACESTATE into the CLI subprocess so its claude_code.interaction span nests under the caller's active span; auto-injection is skipped if TRACEPARENT is set explicitly in options.env.",
+      "topic": "observability-tracing-logging",
+      "sourceUrl": "https://code.claude.com/docs/en/agent-sdk/observability",
+      "sourceTitle": "Observability with OpenTelemetry - Claude Code Docs",
+      "sourceQuote": "the SDK injects `TRACEPARENT` and `TRACESTATE` into the child process environment, and the CLI reads them so its `claude_code.interaction` span becomes a child of your span",
+      "refutes": 2,
+      "survives": false
+    }
+  ]
+}

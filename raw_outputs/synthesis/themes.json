@@ -1,0 +1,96 @@
+{
+  "summary": "Synthesized 150 verified claims (25 sources) into an agent-harness best-practices digest for a TypeScript harness, Claude Agent SDK as reference. The complete dense 12-theme Markdown digest (exec summary, all findings, inline sources, 25-URL Sources list) is on disk at raw_outputs/synthesis/findings-digest.md (written via Bash since the Write tool blocks subagent report files). This harness truncates large structured payloads, so the themes below consolidate the 12 file-themes into 6 grouped themes; the file has the full granular version.",
+  "themes": [
+    {
+      "title": "Core Loop, Loop Control, and Tool Design",
+      "findings": [
+        "Workflows use predefined code paths; agents direct their own tools; pick the simplest. The loop (gather context, take action, verify) runs turns autonomously and ends when Claude emits no tool calls.",
+        "Bound the loop: maxTurns counts tool-use turns only; maxBudgetUsd caps spend (subtype error_max_budget_usd); a budget is the recommended production default.",
+        "Tools matter more than prompts: rewriting tool descriptions cut task time 40%; absolute filepaths fixed errors (poka-yoke); consolidate around workflows; namespace; cap output at 25,000 tokens; offer a response_format enum.",
+        "Return errors as data (isError:true keeps the loop alive; uncaught exceptions kill it); readOnlyHint (default false) lets read-only tools run in parallel."
+      ],
+      "sources": [
+        "https://www.anthropic.com/research/building-effective-agents",
+        "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+        "https://www.anthropic.com/engineering/writing-tools-for-agents",
+        "https://platform.claude.com/docs/en/agent-sdk/custom-tools"
+      ]
+    },
+    {
+      "title": "Context, Memory, and System Prompts",
+      "findings": [
+        "Context rot is measurable (attention scales n-squared); prefer just-in-time retrieval and agentic search (grep/tail). Compaction summarizes history; context editing gives +29% alone, +39% with the memory tool, and -84% tokens over 100 turns.",
+        "The memory tool (memory_20250818) is a client-side /memories file store requiring path-traversal validation; put durable rules in CLAUDE.md/AGENTS.md so they survive compaction; load many tools on demand via tool search.",
+        "System prompts: aim for the right altitude; use XML tags per content type; 3-5 few-shot examples; place long inputs at top and the query at end (up to 30% gain).",
+        "On Opus 4.5/4.6 use normal phrasing not CRITICAL/MUST (prefill removed in 4.6+); tell the agent context auto-compacts so it does not stop early; preserve thinking blocks when returning tool results."
+      ],
+      "sources": [
+        "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+        "https://www.anthropic.com/news/context-management",
+        "https://docs.claude.com/en/docs/agents-and-tools/tool-use/memory-tool",
+        "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags"
+      ]
+    },
+    {
+      "title": "Subagents and Multi-Agent Orchestration",
+      "findings": [
+        "Single-threaded linear agents are the most reliable production design; share full context and traces, not just task summaries, to avoid decision conflicts.",
+        "Multi-agent wins for read-heavy research (Opus lead + Sonnet subagents beat single Opus 90.2%) at ~15x chat tokens; scale subagents to query complexity (simple 1, comparison 2-4, complex 10+).",
+        "Subagents isolate context: fresh conversation, only the final message returns; the only parent channel is the Agent tool prompt string; restrict subagent tools via the tools field.",
+        "Auto-approving subagents needs Agent in allowedTools; use the Workflow tool (TS SDK v0.3.149+) for hundreds of agents; unify decision and code-application into one action."
+      ],
+      "sources": [
+        "https://cognition.ai/blog/dont-build-multi-agents",
+        "https://www.anthropic.com/engineering/multi-agent-research-system",
+        "https://platform.claude.com/docs/en/agent-sdk/subagents"
+      ]
+    },
+    {
+      "title": "Permissions, Sandboxing, Safety, and Human-in-the-Loop",
+      "findings": [
+        "Ordered permission pipeline: hooks, deny, ask, permission mode, allow, canUseTool. Deny rules win even under bypassPermissions; allowedTools does not restrict bypass (use disallowedTools); pair allowedTools with dontAsk for a locked tool surface; subagents inherit bypass/acceptEdits/auto uncontrollably.",
+        "Human approval rubber-stamps (~93% approval); OS sandboxes (Seatbelt/bubblewrap) cut prompts 84%; the auto classifier misses ~17% overeager actions, so it is one defense layer only.",
+        "Containment: defer parsing project config until after the trust prompt; resolve symlinks before path validation; use a MITM egress proxy bound to the VM session token; sandbox writes only to CWD+TMPDIR and does not inspect TLS (domain-fronting risk).",
+        "Hooks run in the app process (no context cost); a PreToolUse hook can reject a call before execution; Plan Mode shows the plan upfront; interrupt_on pauses before risky tools; write_todos tracks tasks; guardrails should run in blocking mode to avoid token use on trip."
+      ],
+      "sources": [
+        "https://docs.claude.com/en/docs/agent-sdk/permissions",
+        "https://www.anthropic.com/engineering/how-we-contain-claude",
+        "https://code.claude.com/docs/en/sandboxing",
+        "https://www.anthropic.com/research/trustworthy-agents",
+        "https://openai.github.io/openai-agents-python/guardrails/",
+        "https://docs.langchain.com/oss/python/deepagents/harness"
+      ]
+    },
+    {
+      "title": "Streaming, Result Handling, and Observability",
+      "findings": [
+        "Streaming lifecycle: message_start, per-block start/delta/stop, message_delta, message_stop; reassemble by index; usage counts are cumulative (use latest); accumulate tool_use input_json_delta and parse only after content_block_stop; tolerate unknown SSE event types.",
+        "Interrupted streams cannot recover tool_use or thinking blocks; ResultMessage.result exists only on the success subtype, though all subtypes carry total_cost_usd, usage, num_turns, session_id.",
+        "Telemetry is off by default (CLAUDE_CODE_ENABLE_TELEMETRY=1 plus an exporter); traces also need CLAUDE_CODE_ENHANCED_TELEMETRY_BETA=1; default intervals are 60s metrics and 5s traces/logs (lower to ~1000ms for short calls).",
+        "Agent content is not logged by default; opt in via OTEL_LOG_USER_PROMPTS, OTEL_LOG_TOOL_DETAILS, OTEL_LOG_TOOL_CONTENT (60KB cap), OTEL_LOG_RAW_API_BODIES."
+      ],
+      "sources": [
+        "https://docs.anthropic.com/en/api/messages-streaming",
+        "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+        "https://code.claude.com/docs/en/agent-sdk/observability"
+      ]
+    },
+    {
+      "title": "Evaluation, File Structure, and Claude Agent SDK Specifics",
+      "findings": [
+        "Evaluation: start with 20-50 real-failure tasks; a 0% pass@100 usually means a broken grader; isolate every trial; grade outcomes not tool paths; capability evals start low and regression evals stay near 100%; use pass^k for consistency (0.75^3 about 42%); calibrate LLM-as-judge to humans with an Unknown option.",
+        "File structure: bootstrap with init.sh read every session; carry state in claude-progress.txt; encode requirements as a 200+ feature JSON list; one feature per session with git recovery and end-to-end verification (Puppeteer MCP); never edit/remove tests.",
+        "Skills via progressive disclosure (SKILL.md frontmatter loaded first); AGENTS.md memory is always loaded; a portable .agent/ folder standardizes a cross-tool harness layer; tools:[] leaves only custom MCP tools.",
+        "SDK: Python 3.10+; TS bundles a native Claude Code binary; MCP tools = mcp__server__tool; TS defaults include MAX_RETRIES 10, API_TIMEOUT_MS 600000, thinking adaptive, persistSession true, enableFileCheckpointing false; settings load from user/project/local .claude (empty settingSources disables)."
+      ],
+      "sources": [
+        "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+        "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+        "https://github.com/ai-boost/awesome-harness-engineering",
+        "https://platform.claude.com/docs/en/agent-sdk/overview",
+        "https://platform.claude.com/docs/en/agent-sdk/typescript"
+      ]
+    }
+  ]
+}

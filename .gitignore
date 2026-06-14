@@ -1,0 +1,13 @@
+# Node
+node_modules/
+*.log
+
+# Env / secrets
+.env
+.env.*
+
+# Agent runtime artifacts
+.agent-memory/
+
+# OS
+.DS_Store
