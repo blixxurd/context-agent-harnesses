@@ -18,6 +18,10 @@ theme (TypeScript + Python). See the [code samples index](code_samples/README.md
 
 📦 **[`raw_outputs/`](raw_outputs/)** — the raw research this was built from.
 
+📐 **[`docs/llm-navigable-repo-playbook.md`](docs/llm-navigable-repo-playbook.md)** — a
+domain-agnostic playbook for emulating this repo's structure: the patterns that make it
+cheap for an LLM agent to navigate, with a copyable template and checklist.
+
 ## How it was built
 
 A deep-research workflow fanned out across **13 angles**, ran parallel web searches,
