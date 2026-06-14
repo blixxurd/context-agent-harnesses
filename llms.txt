@@ -34,7 +34,9 @@ source.
 
 ## Optional / raw material
 
+- [Raw research overview](raw_outputs/README.md): how the evidence is organized (search → sources → claims → synthesis) and the join keys between them. Read this first if you're verifying claims.
+- [Source index](raw_outputs/sources/INDEX.md): crosswalk from each guide citation key (`[be]`, `[wt]`, …) to its fetched source file, URL, and claim count. Machine-readable: [sources.json](raw_outputs/sources/sources.json).
 - [Findings digest](raw_outputs/synthesis/findings-digest.md): granular 12-theme digest with per-claim source attribution.
-- [Verified claims ledger](raw_outputs/claims/verified-claims.json): 150 surviving claims (+ 4 dropped) with sources and supporting quotes.
-- [Fetched sources](raw_outputs/sources/): full extracted text of all 25 primary sources.
-- [Search dumps](raw_outputs/search/): per-angle web-search results.
+- [Verified claims ledger](raw_outputs/claims/verified-claims.json): 150 surviving claims (+ 4 dropped), each with a `sourceId` (→ a source file), `sourceUrl`, and supporting quote. Heaviest artifact (~100KB) — load when you need claim-level provenance.
+- [Fetched sources](raw_outputs/sources/): full extracted text of all 25 primary sources (see the index above).
+- [Search dumps](raw_outputs/search/): per-angle web-search results (13 research angles).

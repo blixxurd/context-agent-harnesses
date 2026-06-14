@@ -9,7 +9,25 @@ This document synthesizes **150 adversarially-verified claims** drawn from **25 
 sources** (Anthropic engineering & SDK docs, Cognition, OpenAI, LangChain). Every
 section links to the code samples that demonstrate it and to the sources behind it.
 The raw research — search dumps, fetched source text, the claim ledger, and the
-machine-readable digest — lives in [`../raw_outputs/`](../raw_outputs/).
+machine-readable digest — lives in [`../raw_outputs/`](../raw_outputs/) (start with its
+[`README`](../raw_outputs/README.md) and the [source index](../raw_outputs/sources/INDEX.md)).
+
+## Contents
+
+- [0. What a harness is, and why it's the lever](#0-what-a-harness-is-and-why-its-the-lever)
+- [1. The agentic loop](#1-the-agentic-loop)
+- [2. Tool design & the tool-result contract](#2-tool-design--the-tool-result-contract)
+- [3. Context window & memory management](#3-context-window--memory-management)
+- [4. System prompts & instructions](#4-system-prompts--instructions)
+- [5. Subagents & multi-agent orchestration](#5-subagents--multi-agent-orchestration)
+- [6. Permissions, sandboxing & safety guardrails](#6-permissions-sandboxing--safety-guardrails)
+- [7. Human-in-the-loop & lifecycle hooks](#7-human-in-the-loop--lifecycle-hooks)
+- [8. Error handling, resilience & streaming](#8-error-handling-resilience--streaming)
+- [9. Observability, tracing & logging](#9-observability-tracing--logging)
+- [10. Evaluation & testing](#10-evaluation--testing)
+- [11. Project & file structure for long-running agents](#11-project--file-structure-for-long-running-agents)
+- [12. Claude Agent SDK specifics](#12-claude-agent-sdk-specifics)
+- [Quick decision cheat-sheet](#quick-decision-cheat-sheet) · [Top anti-patterns](#top-anti-patterns) · [Sources](#sources)
 
 ---
 
