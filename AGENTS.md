@@ -17,6 +17,9 @@ context to read from, and as a place to extend with more verified guidance.
 - `code_samples/python/` — 3 illustrative Python samples.
 - `raw_outputs/` — the raw research the guide is built from (search dumps, fetched
   source text, the 150-claim ledger, the synthesis digest). Treat as read-only evidence.
+  See [`raw_outputs/README.md`](raw_outputs/README.md) for the pipeline and join keys, and
+  [`raw_outputs/sources/INDEX.md`](raw_outputs/sources/INDEX.md) to map a citation key to
+  its source file.
 
 ## Ground rules for changes
 

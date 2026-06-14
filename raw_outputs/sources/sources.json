@@ -1,0 +1,210 @@
+[
+  {
+    "id": "source-00",
+    "key": "be",
+    "title": "Building Effective AI Agents \u2014 Anthropic",
+    "url": "https://www.anthropic.com/research/building-effective-agents",
+    "claims": 6,
+    "topic": "core-agentic-loop"
+  },
+  {
+    "id": "source-01",
+    "key": "wt",
+    "title": "Writing effective tools for AI agents\u2014using AI agents (Anthropic Engineering)",
+    "url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+    "claims": 6,
+    "topic": "tool-design-and-result-contract"
+  },
+  {
+    "id": "source-02",
+    "key": "ce",
+    "title": "Effective context engineering for AI agents \u2014 Anthropic",
+    "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+    "claims": 6,
+    "topic": "context-window-and-memory"
+  },
+  {
+    "id": "source-03",
+    "key": "ah",
+    "title": "awesome-harness-engineering \u2014 GitHub",
+    "url": "https://github.com/ai-boost/awesome-harness-engineering",
+    "claims": 4,
+    "topic": "system-prompt-and-instructions"
+  },
+  {
+    "id": "source-04",
+    "key": "ct",
+    "title": "Give Claude custom tools \u2014 Claude Agent SDK Docs",
+    "url": "https://platform.claude.com/docs/en/agent-sdk/custom-tools",
+    "claims": 6,
+    "topic": "claude-agent-sdk-specifics"
+  },
+  {
+    "id": "source-05",
+    "key": "contain",
+    "title": "How we contain Claude across products - Anthropic Engineering",
+    "url": "https://www.anthropic.com/engineering/how-we-contain-claude",
+    "claims": 6,
+    "topic": "permissions-and-sandboxing"
+  },
+  {
+    "id": "source-06",
+    "key": "lr",
+    "title": "Effective harnesses for long-running agents \u2014 Anthropic Engineering",
+    "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+    "claims": 6,
+    "topic": "project-file-structure"
+  },
+  {
+    "id": "source-07",
+    "key": "guardrails",
+    "title": "Guardrails \u2014 OpenAI Agents SDK",
+    "url": "https://openai.github.io/openai-agents-python/guardrails/",
+    "claims": 6,
+    "topic": "safety-guardrails"
+  },
+  {
+    "id": "source-08",
+    "key": "da",
+    "title": "Harness capabilities - Docs by LangChain (deepagents)",
+    "url": "https://docs.langchain.com/oss/python/deepagents/harness",
+    "claims": 6,
+    "topic": "project-file-structure"
+  },
+  {
+    "id": "source-09",
+    "key": "ts",
+    "title": "Agent SDK reference - TypeScript - Claude API Docs",
+    "url": "https://platform.claude.com/docs/en/agent-sdk/typescript",
+    "claims": 7,
+    "topic": "claude-agent-sdk-specifics"
+  },
+  {
+    "id": "source-10",
+    "key": "perm",
+    "title": "Configure permissions (Handling Permissions - Claude Agent SDK Docs)",
+    "url": "https://docs.claude.com/en/docs/agent-sdk/permissions",
+    "claims": 6,
+    "topic": "permissions-and-sandboxing"
+  },
+  {
+    "id": "source-11",
+    "key": "st",
+    "title": "Streaming messages - Claude API Docs",
+    "url": "https://docs.anthropic.com/en/api/messages-streaming",
+    "claims": 7,
+    "topic": "streaming-and-lifecycle-hooks"
+  },
+  {
+    "id": "source-12",
+    "key": "obs",
+    "title": "Observability with OpenTelemetry - Claude Code Docs",
+    "url": "https://code.claude.com/docs/en/agent-sdk/observability",
+    "claims": 4,
+    "topic": "observability-tracing-logging"
+  },
+  {
+    "id": "source-13",
+    "key": "ev",
+    "title": "Demystifying evals for AI agents \u2014 Anthropic Engineering",
+    "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+    "claims": 7,
+    "topic": "evaluation-and-testing"
+  },
+  {
+    "id": "source-14",
+    "key": "ov",
+    "title": "Agent SDK overview - Claude API Docs",
+    "url": "https://platform.claude.com/docs/en/agent-sdk/overview",
+    "claims": 6,
+    "topic": "claude-agent-sdk-specifics"
+  },
+  {
+    "id": "source-15",
+    "key": "bsdk",
+    "title": "Building agents with the Claude Agent SDK - Anthropic Engineering",
+    "url": "https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk",
+    "claims": 6,
+    "topic": "agent-loop-architecture"
+  },
+  {
+    "id": "source-16",
+    "key": "loop",
+    "title": "How the agent loop works \u2014 Claude Code Docs",
+    "url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+    "claims": 7,
+    "topic": "core-agentic-loop"
+  },
+  {
+    "id": "source-17",
+    "key": "cm",
+    "title": "Managing Context on the Claude Developer Platform \u2014 Anthropic",
+    "url": "https://www.anthropic.com/news/context-management",
+    "claims": 6,
+    "topic": "context-window-and-memory"
+  },
+  {
+    "id": "source-18",
+    "key": "dm",
+    "title": "Don't Build Multi-Agents | Cognition",
+    "url": "https://cognition.ai/blog/dont-build-multi-agents",
+    "claims": 6,
+    "topic": "subagents-and-orchestration"
+  },
+  {
+    "id": "source-19",
+    "key": "ma",
+    "title": "How we built our multi-agent research system | Anthropic",
+    "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+    "claims": 6,
+    "topic": "subagents-and-orchestration"
+  },
+  {
+    "id": "source-20",
+    "key": "sb",
+    "title": "Configure the sandboxed Bash tool - Claude Code Docs",
+    "url": "https://code.claude.com/docs/en/sandboxing",
+    "claims": 6,
+    "topic": "permissions-and-sandboxing"
+  },
+  {
+    "id": "source-21",
+    "key": "tw",
+    "title": "Trustworthy Agents in Practice \u2014 Anthropic",
+    "url": "https://www.anthropic.com/research/trustworthy-agents",
+    "claims": 6,
+    "topic": "safety-guardrails"
+  },
+  {
+    "id": "source-22",
+    "key": "mt",
+    "title": "Memory tool \u2014 Claude Docs",
+    "url": "https://docs.claude.com/en/docs/agents-and-tools/tool-use/memory-tool",
+    "claims": 6,
+    "topic": "context-window-and-memory"
+  },
+  {
+    "id": "source-23",
+    "key": "xml",
+    "title": "Use XML tags to structure your prompts \u2014 Claude Docs",
+    "url": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags",
+    "claims": 6,
+    "topic": "system-prompt-and-instructions"
+  },
+  {
+    "id": "source-24",
+    "key": "sa",
+    "title": "Subagents in the SDK - Claude API Docs",
+    "url": "https://platform.claude.com/docs/en/agent-sdk/subagents",
+    "claims": 6,
+    "topic": "subagents-and-orchestration"
+  },
+  {
+    "id": "source-25",
+    "key": "",
+    "title": "Semantic Conventions for GenAI agent and framework spans | OpenTelemetry",
+    "url": "https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/",
+    "claims": 0,
+    "topic": ""
+  }
+]

@@ -40,9 +40,12 @@ Cognition, OpenAI, and LangChain.
 │   ├── typescript/                   # 10 samples (primary), type-checked
 │   └── python/                       # 3 illustrative parallels
 ├── raw_outputs/                      # raw research material
+│   ├── README.md                     # provenance pipeline + join keys
 │   ├── search/                       # 13 per-angle search dumps
 │   ├── sources/                      # 26 fetched source pages (full text)
-│   ├── claims/verified-claims.json   # 150 survivors + 4 dropped, with sources
+│   │   ├── INDEX.md                  # citation key ↔ source file ↔ URL ↔ claims
+│   │   └── sources.json              # machine-readable crosswalk
+│   ├── claims/verified-claims.json   # 150 survivors + 4 dropped, with sourceId
 │   └── synthesis/
 │       ├── findings-digest.md        # granular 12-theme cited digest
 │       └── themes.json               # machine-readable themes
