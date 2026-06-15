@@ -30,8 +30,8 @@ demand (it navigates the manifest and reads only the relevant section — it doe
 the whole guide into context). Install it in any project:
 
 ```
-/plugin marketplace add blixxurd/context-agent-harnesses
-/plugin install agent-harness@harness-reference
+/plugin marketplace add blixxurd/fidget-marketplace
+/plugin install agent-harness@fidget
 ```
 
 The skill then auto-triggers on agent-harness work (the loop, tool design, context,
